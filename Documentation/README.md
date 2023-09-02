@@ -1,3 +1,4 @@
  Documentation for the Norvus software developer final project including:
  
-* Feasibilty report 
+* Feasibilty report
+* Requirements list
