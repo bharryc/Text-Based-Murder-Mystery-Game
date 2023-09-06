@@ -2,4 +2,4 @@
  
 * Feasibilty report
 * Requirements list
-* UMLs (use cases, class diagram, sequence diagram, state diagram, activity diagram, component diagram)
+* UMLs (use cases, class diagram, sequence diagram, state diagram, activity diagram, package diagram)
