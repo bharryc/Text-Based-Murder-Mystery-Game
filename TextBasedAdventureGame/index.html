@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Text Adventure Game</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+                flex-direction: row;
+            }
+
+            div.container{
+                text-align: center;
+                width: 80%;
+                max-height: 80vh;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                border: 1px solid #ccc;
+                padding: 10px;
+                white-space: pre-wrap;
+                background-color: #e0e0e0;
+            }
+
+            input[type="text"]{
+                width: 85%;
+                padding: 5px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container" id="container">
+            <pre id="output"></pre>
+            <input type="text" id="input" placeholder="type command in" onkeypress="if(event.keyCode === 13) sendCommand()">
+        </div>
+
+        <script>
+            const container = document.getElementById('container');
+            const output = document.getElementById('output');
+            const input = document.getElementById('input');
+            const ws = new WebSocket("ws://localhost:8080/index");
+
+            // web socket event handlers
+            ws.onopen = () => {
+                output.textContent += 'Game started.\n';
+            }
+
+            ws.onmessage = (event) => {
+                output.textContent += event.data + '\n';
+                clearInput();
+                container.scrollTop = container.scrollHeight;
+            } 
+
+            ws.onclose = () => {
+                output.textContent += 'Game closed. \n';
+            }
+
+            // clears user input
+            function clearInput(){
+                input.value = '';
+            }
+
+            // sends user input 
+            function sendCommand(){
+                const userInput = input.value.trim().toLowerCase();
+                ws.send(userInput);
+            }
+        </script>
+    </body>
+</html>
