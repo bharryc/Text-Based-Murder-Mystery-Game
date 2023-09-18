@@ -150,6 +150,8 @@ class Game {
     async handleInput(input, ws) {
         const command = input.split(' ')[0];
 
+        // needed as game parses player input as command 
+        // checks to see if player is currently solving a puzzle  
         if (this.player.currentRoom.puzzle && this.player.currentRoom.puzzle.isSolving) {
             if (this.player.currentRoom.puzzle.isSolved(command)) {
                 ws.send(' ');
