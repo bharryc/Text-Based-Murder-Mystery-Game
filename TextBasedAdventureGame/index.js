@@ -76,6 +76,7 @@ class AnagramPuzzle extends Puzzle {
         // console.log(randomWord);
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
+        this.isSolving = false;
     }
 }
 
@@ -147,81 +148,88 @@ class Game {
     async handleInput(input, ws) {
         const command = input.split(' ')[0];
 
-        // execute command
-        switch (command) {
-            case 'go':
-                const direction = input.split(' ')[1];
-                if (this.player.currentRoom.exits[direction]) {
-                    this.player.moveToRoom(this.rooms[this.player.currentRoom.exits[direction]]);
+        if (this.player.currentRoom.puzzle && this.player.currentRoom.puzzle.isSolving) {
+            if (this.player.currentRoom.puzzle.isSolved(command)) {
+                ws.send(' ');
+                ws.send('Correct... the device reveals....');
+                ws.send(' ');
+            } else {
+                ws.send(' ');
+                ws.send('Incorrect... the device breaks in your hand');
+                ws.send(' ');
+            }
+
+            this.player.currentRoom.puzzle.isSolving = false;
+            //ws.send(this.player.getRoomInfo());
+
+        } else {
+            // execute command
+            switch (command) {
+                case 'go':
+                    const direction = input.split(' ')[1];
+                    if (this.player.currentRoom.exits[direction]) {
+                        this.player.moveToRoom(this.rooms[this.player.currentRoom.exits[direction]]);
+                        ws.send(' ');
+                        ws.send(this.player.getRoomInfo());
+                        ws.send(' ');
+                    } else {
+                        ws.send(' ');
+                        ws.send('You can\'t go thay way');
+                        ws.send(' ');
+                    }
+                    break;
+                case 'description':
                     ws.send(' ');
                     ws.send(this.player.getRoomInfo());
                     ws.send(' ');
-                } else {
+                    break;
+                case 'search':
+                    if (this.player.currentRoom.puzzle) {
+                        ws.send(' ');
+                        ws.send('There seems to be something here to solve');
+                        ws.send(' ');
+                    } else {
+                        ws.send(' ');
+                        ws.send('You found nothing');
+                        ws.send(' ');
+                    }
+                    break;
+                case 'solve':
+                    if (this.player.currentRoom.puzzle) {
+                        ws.send(' ');
+                        ws.send('You find a strange device and start investigating it...');
+                        ws.send(this.player.currentRoom.puzzle.getInstructions());
+                        this.player.currentRoom.puzzle.isSolving = true;
+                        ws.send('Please enter your answer:');
+                    } else {
+                        ws.send(' ');
+                        ws.send('There is nothing in this room for you to solve');
+                        ws.send(' ');
+                    }
+                    break;
+                case 'help':
                     ws.send(' ');
-                    ws.send('You can\'t go thay way');
+                    ws.send('List of available commands: ');
+                    ws.send('"go x : add direction to command to move to a room');
+                    ws.send('"description" : gives current room description');
+                    ws.send('"search" : searches the current room you are in')
+                    ws.send('"solve" : solves the puzzle in the current room')
+                    ws.send('"quit" : exits game');
                     ws.send(' ');
-                }
-                break;
-            case 'description':
-                ws.send(' ');
-                ws.send(this.player.getRoomInfo());
-                ws.send(' ');
-                break;
-            case 'search':
-                if (this.player.currentRoom.puzzle) {
+                    break;
+                case 'quit':
                     ws.send(' ');
-                    ws.send('There seems to be something here to solve');
+                    ws.send('Goodbye');
                     ws.send(' ');
-                } else {
+                    break;
+                default:
                     ws.send(' ');
-                    ws.send('You found nothing');
+                    ws.send('Invalid command');
                     ws.send(' ');
-                }
-                break;
-            case 'solve':
-                if (this.player.currentRoom.puzzle) {
-                    ws.send(' ');
-                    ws.send('You find a strange device and start investigating it...');
-                    ws.send(this.player.currentRoom.puzzle.getInstructions());
-
-                    // wait for the player's input
-                    ws.send('Please enter your answer:');
-                    ws.once('message', async (userInput) => {
-                        const ans = userInput.trim();
-                        if (this.player.currentRoom.puzzle.isSolved(ans)) {
-                            ws.send('Correct... the device reveals....');
-                            ws.send(' ');
-                        } else {
-                            ws.send('Incorrect... the device breaks in your hand');
-                            ws.send(' ');
-                        }
-                    });
-                } else {
-                    ws.send(' ');
-                    ws.send('There is nothing in this room for you to solve');
-                    ws.send(' ');
-                }
-                break;
-            case 'help':
-                ws.send(' ');
-                ws.send('List of available commands: ');
-                ws.send('"go x : add direction to command to move to a room');
-                ws.send('"description" : gives current room description');
-                ws.send('"search" : searches the current room you are in')
-                ws.send('"solve" : solves the puzzle in the current room')
-                ws.send('"quit" : exits game');
-                ws.send(' ');
-                break;
-            case 'quit':
-                ws.send(' ');
-                ws.send('Goodbye');
-                ws.send(' ');
-                break;
-            default:
-                ws.send(' ');
-                ws.send('Invalid command');
-                ws.send(' ');
+            }
         }
+
+
     }
 }
 
