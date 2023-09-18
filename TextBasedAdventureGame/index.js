@@ -216,9 +216,28 @@ class Game {
                     ws.send('List of available commands: ');
                     ws.send('"go x : add direction to command to move to a room');
                     ws.send('"description" : gives current room description');
+                    ws.send('"map" : displays map');
                     ws.send('"search" : searches the current room you are in')
                     ws.send('"solve" : solves the puzzle in the current room')
                     ws.send('"quit" : exits game');
+                    ws.send(' ');
+                    break;
+                case 'map':
+                    ws.send(' ');
+                    ws.send('*-------------*-------------*-------------*');
+                    ws.send('|             |             |             |');
+                    ws.send('|    garage   |    kitchen  |  games room |');
+                    ws.send('|             |             |             |');
+                    ws.send('*-------------*-------------*-------------*');
+                    ws.send('|             |             |             |');
+                    ws.send('|    garden   |  courtyard  | dining room |');
+                    ws.send('|             |             |             |');
+                    ws.send('*-------------*-------------*-------------*');
+                    ws.send('|             |             |             |');
+                    ws.send('|   bathroom  |   bedroom   | living room |');
+                    ws.send('|             |             |             |');
+                    ws.send('*-------------*-------------*-------------*');
+                    ws.send(` You are in the ${this.player.currentRoom.name}`);
                     ws.send(' ');
                     break;
                 case 'quit':
