@@ -39,6 +39,7 @@ class Puzzle {
         this.answer = answer;
         this.instructions = instructions;
         this.solved = false;
+        this.isSolving = false;
     }
 
     getInstructions() {
@@ -72,11 +73,12 @@ class AnagramPuzzle extends Puzzle {
         }
         const shuffledWord = shuffled.join('');
 
-        // console.log(shuffledWord);
-        // console.log(randomWord);
+        // debugging stuff 
+        console.log(shuffledWord);
+        console.log(randomWord);
+        // REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
-        this.isSolving = false;
     }
 }
 
