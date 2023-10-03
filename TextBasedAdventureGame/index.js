@@ -76,11 +76,48 @@ class AnagramPuzzle extends Puzzle {
         // debugging stuff 
         console.log(shuffledWord);
         console.log(randomWord);
-        // REMOVE PLS.
+        // DONT FORGET TO REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
     }
 }
+
+// class for maths puzzle 
+class MathPuzzle extends Puzzle {
+    constructor(){
+        let question, answer, op;
+        const num1 = Math.floor(Math.random() * 50) + 1;
+        const num2 = Math.floor(Math.random() * 20) + 1;
+        const operations = ['+', '=', '*', '/'];
+        op = operations[Math.floor(Math.random() * operations.length)];
+    
+        do {
+            switch (op) {
+                case '+':
+                    question = `${num1} + ${num2}`;
+                    answer = num1+num2;
+                    break;
+                case '-':
+                    question = `${num1} - ${num2}`;
+                    answer = num1 - num2;
+                    break;
+                case '*':
+                    question = `${num1} * ${num2}`;
+                    answer = num1 * num2;
+                    break;
+                case '/':
+                    if (num1 % num2 == 0){
+                        question = `${num1} / ${num2}`;
+                        answer = num1 / num2;                       
+                    }
+                    break;
+            }
+        } while (answer == undefined);
+
+        super(`Solve this problem:  ${question}`, answer.toString());
+    }
+}
+
 
 // class for game
 class Game {
@@ -107,12 +144,14 @@ class Game {
         listOfRooms.sort(() => Math.random() - 0.5);
 
         // list of available puzzles
-        const puzzles = [new AnagramPuzzle()];
+        const puzzles = [new AnagramPuzzle(), new MathPuzzle()];
         puzzles.sort(() => Math.random() - 0.5);
 
         // assigns puzzle to room
         for (let i = 0; i < puzzles.length && i < listOfRooms.length; i++) {
             this.rooms[listOfRooms[i]].puzzle = puzzles[i];
+
+            //debugging
             console.log(listOfRooms[i]);
         }
 
@@ -149,6 +188,10 @@ class Game {
 
     async handleInput(input, ws) {
         const command = input.split(' ')[0];
+
+        ws.send(" ");
+        ws.send(input);
+        ws.send(" ");
 
         // needed as game parses player input as command 
         // checks to see if player is currently solving a puzzle  
