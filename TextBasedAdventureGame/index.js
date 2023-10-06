@@ -74,8 +74,8 @@ class AnagramPuzzle extends Puzzle {
         const shuffledWord = shuffled.join('');
 
         // debugging stuff 
-        console.log(shuffledWord);
-        console.log(randomWord);
+        console.log(`shuffled word ${shuffledWord}`);
+        console.log(`original word ${randomWord}`);
         // DONT FORGET TO REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
@@ -84,18 +84,18 @@ class AnagramPuzzle extends Puzzle {
 
 // class for maths puzzle 
 class MathPuzzle extends Puzzle {
-    constructor(){
+    constructor() {
         let question, answer, op;
         const num1 = Math.floor(Math.random() * 50) + 1;
         const num2 = Math.floor(Math.random() * 20) + 1;
         const operations = ['+', '=', '*', '/'];
         op = operations[Math.floor(Math.random() * operations.length)];
-    
+
         do {
             switch (op) {
                 case '+':
                     question = `${num1} + ${num2}`;
-                    answer = num1+num2;
+                    answer = num1 + num2;
                     break;
                 case '-':
                     question = `${num1} - ${num2}`;
@@ -106,18 +106,61 @@ class MathPuzzle extends Puzzle {
                     answer = num1 * num2;
                     break;
                 case '/':
-                    if (num1 % num2 == 0){
+                    if (num1 % num2 == 0) {
                         question = `${num1} / ${num2}`;
-                        answer = num1 / num2;                       
+                        answer = num1 / num2;
                     }
                     break;
             }
         } while (answer == undefined);
 
+        console.log(`maths answer ${answer}`);
+
         super(`Solve this problem:  ${question}`, answer.toString());
     }
 }
 
+// class for caesar cipher puzzle
+class CaesarCipherPuzzle extends Puzzle {
+    constructor() {
+        const texts = ["detective", "secret", "clue", "evidence", "the garden outside is overgrown hiding secrets", "the dining room is set for a meal that never happened",
+         "the suspects are gathering in the living room", "a broken pool cue is resting on the table in the games room"];
+
+        const randomIndex = Math.floor(Math.random() * texts.length);
+        const text = texts[randomIndex];
+
+        const shift = Math.floor(Math.random() * 25) + 1;
+
+        let encrypted = '';
+
+        // apply cipher. 
+        // random chance that letter gets encrypted
+        // if not encrypted then makes it capital letter
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            if (char === ' ') {
+                encrypted += ' ';
+            } else {
+                const chanceToEncrypt = Math.random() < 0.75;
+                if (chanceToEncrypt) {
+                    const charCode = char.charCodeAt(0);
+                    const shiftedCharCode = ((charCode - 97 + shift) % 26) + 97;
+                    
+                    encrypted += String.fromCharCode(shiftedCharCode);
+                } else {
+                    encrypted += char.toUpperCase();
+                }
+            }
+        }
+
+        super(`Decrypt this Caesar Cipher text (random shift from 1-25 applied. Uppercase letters are unencrypted): ${encrypted}`, text);
+
+        //debuging stuff - DONT FORGET TO REMOVE LATER 
+        console.log(`original text ${text}`);
+        console.log(`encrypted text ${encrypted}`);
+        console.log(`cipher shift ${shift}`);
+    }
+}
 
 // class for game
 class Game {
@@ -125,7 +168,7 @@ class Game {
         // list of rooms in the game
         this.rooms = {
             'garage': new Room('Garage', 'You are in the garage. There are exits to the east and south.', { east: 'kitchen', south: 'garden' }),
-            'kitchen': new Room('Kitchen', 'You are in the kitchen. There are exits to the west, east and south.', { east: 'games_room', west: 'garden', south: 'courtyard' }),
+            'kitchen': new Room('Kitchen', 'You are in the kitchen. There are exits to the west, east and south.', { east: 'games_room', west: 'garage', south: 'courtyard' }),
             'games_room': new Room('Games Room', 'You are in the games room. There are exits to the west and south.', { west: 'kitchen', south: 'dining_room' }),
             'dining_room': new Room('Dining Room', 'You are in the dining room. There are exits to the north, west and south.', { north: 'games_room', west: 'courtyard', south: 'living_room' }),
             'living_room': new Room('Living Room', 'You are in the living room. There are exits to the north and west.', { north: 'dining_room', west: 'bedroom' }),
@@ -144,7 +187,7 @@ class Game {
         listOfRooms.sort(() => Math.random() - 0.5);
 
         // list of available puzzles
-        const puzzles = [new AnagramPuzzle(), new MathPuzzle()];
+        const puzzles = [new AnagramPuzzle(), new MathPuzzle(), new CaesarCipherPuzzle()];
         puzzles.sort(() => Math.random() - 0.5);
 
         // assigns puzzle to room
@@ -187,8 +230,6 @@ class Game {
     }
 
     async handleInput(input, ws) {
-        const command = input.split(' ')[0];
-
         ws.send(" ");
         ws.send(input);
         ws.send(" ");
@@ -196,7 +237,8 @@ class Game {
         // needed as game parses player input as command 
         // checks to see if player is currently solving a puzzle  
         if (this.player.currentRoom.puzzle && this.player.currentRoom.puzzle.isSolving) {
-            if (this.player.currentRoom.puzzle.isSolved(command)) {
+            const playerAnswer = input;
+            if (this.player.currentRoom.puzzle.isSolved(playerAnswer)) {
                 ws.send(' ');
                 ws.send('Correct... the device reveals....');
                 ws.send(' ');
@@ -210,6 +252,7 @@ class Game {
             //ws.send(this.player.getRoomInfo());
 
         } else {
+             const command = input.split(' ')[0];
             // execute command
             switch (command) {
                 case 'go':
@@ -269,7 +312,7 @@ class Game {
                     ws.send(' ');
                     ws.send('*-------------*-------------*-------------*');
                     ws.send('|             |             |             |');
-                    ws.send('|    garage   |    kitchen  |  games room |');
+                    ws.send('|    garage   |   kitchen   |  games room |');
                     ws.send('|             |             |             |');
                     ws.send('*-------------*-------------*-------------*');
                     ws.send('|             |             |             |');
