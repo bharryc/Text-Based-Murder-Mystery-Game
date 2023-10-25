@@ -14,6 +14,16 @@ class Room {
         this.description = description;
         this.exits = exits;
         this.puzzle = null;
+        this.characters = [];
+    }
+
+    addChar(char) {
+        if (this.characters.length < 2) {
+            this.characters.push(char);
+            char.currentRoom = this;
+        }
+
+        console.log(`Char: ${char.name} has been added to ${this.name}`);
     }
 }
 
@@ -30,14 +40,15 @@ class Player {
 
     // returns the room description of the current room
     getRoomInfo() {
-        return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')}`;
+        return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters in room: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
     }
 }
 
 class Character {
-    constructor(name, isMurderer, characterData){
+    constructor(name, isMurderer, isVictim, characterData) {
         this.name = name;
         this.isMurderer = isMurderer;
+        this.isVictim = isVictim;
         this.characterData = characterData;
         this.currentRoom = null;
     }
@@ -135,7 +146,7 @@ class MathPuzzle extends Puzzle {
 class CaesarCipherPuzzle extends Puzzle {
     constructor() {
         const texts = ["detective", "secret", "clue", "evidence", "the garden outside is overgrown hiding secrets", "the dining room is set for a meal that never happened",
-         "the suspects are gathering in the living room", "a broken pool cue is resting on the table in the games room"];
+            "the suspects are gathering in the living room", "a broken pool cue is resting on the table in the games room"];
 
         const randomIndex = Math.floor(Math.random() * texts.length);
         const text = texts[randomIndex];
@@ -156,7 +167,7 @@ class CaesarCipherPuzzle extends Puzzle {
                 if (chanceToEncrypt) {
                     const charCode = char.charCodeAt(0);
                     const shiftedCharCode = ((charCode - 97 + shift) % 26) + 97;
-                    
+
                     encrypted += String.fromCharCode(shiftedCharCode);
                 } else {
                     encrypted += char.toUpperCase();
@@ -190,20 +201,35 @@ class Game {
         }
 
         // creates characters, randomly picks murder and victim
-        const characters = loadCharData();
-        const charNames = Object.keys(characters);
-        // console.log(charNames);
+        const charactersData = loadCharData();
+        let jay, matt, saint, steven, jamal, julian, emma, aria;
+        const listOfChars = [
+            jay = new Character('Jay', false, false, charactersData['jay']),
+            matt = new Character('Matt', false, false, charactersData['matt']),
+            saint = new Character('Saint', false, false, charactersData['saint']),
+            steven = new Character('Steven', false, false, charactersData['steven']),
+            jamal = new Character('Jamal', false, false, charactersData['jamal']),
+            julian = new Character('Julian', false, false, charactersData['julian']),
+            emma = new Character('Emma', false, false, charactersData['emma']),
+            aria = new Character('Aria', false, false, charactersData['aria'])
+        ];
 
-        const randomVictimIndex = Math.floor(Math.random() * charNames.length);
+        // console.log(listOfChars)
+
+        this.addCharToRoom(listOfChars)
+
+        // randomly selects murderer and victim 
+        const randomVictimIndex = Math.floor(Math.random() * listOfChars.length);
         let randomMurdererIndex;
         do {
-            randomMurdererIndex = Math.floor(Math.random() * charNames.length);
-        }while (randomMurdererIndex === randomVictimIndex);
+            randomMurdererIndex = Math.floor(Math.random() * listOfChars.length);
+        } while (randomVictimIndex == randomMurdererIndex);
 
-        const victimName = charNames[randomVictimIndex];
-        const murdererName = charNames[randomMurdererIndex];
+        const victim = listOfChars[randomVictimIndex];
+        const murderer = listOfChars[randomMurdererIndex];
 
-        
+        console.log(`Victim is: ${victim.name}`);
+        console.log(`Murderer is: ${murderer.name}`);
 
         // creates player and starting room
         this.player = new Player();
@@ -227,6 +253,18 @@ class Game {
 
         this.setUp();
     }
+
+
+    // function to add a character to a room randomly.
+    addCharToRoom(listOfChars) {
+        const roomsList = Object.values(this.rooms);
+        roomsList.sort(() => Math.random() - 0.5);
+        for (let i = 0; i < listOfChars.length;i++){
+            const room = roomsList[i % roomsList.length];
+            room.addChar(listOfChars[i]);
+        }
+    }
+
 
     setUp() {
         // initialise websocket server
@@ -279,7 +317,7 @@ class Game {
             //ws.send(this.player.getRoomInfo());
 
         } else {
-             const command = input.split(' ')[0];
+            const command = input.split(' ')[0];
             // execute command
             switch (command) {
                 case 'go':
@@ -367,11 +405,11 @@ class Game {
     }
 }
 
-function loadCharData(){
+function loadCharData() {
     try {
         const data = fs.readFileSync('characterData.json', 'utf-8');
         return JSON.parse(data);
-    } catch (err){
+    } catch (err) {
         console.errpr(`Error loading character data: ${err}`);
         return {};
     }
