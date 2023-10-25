@@ -1,6 +1,7 @@
 const express = require('express');
 const readline = require('readline');
 const expressWs = require('express-ws');
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -32,6 +33,16 @@ class Player {
         return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')}`;
     }
 }
+
+class Character {
+    constructor(name, isMurderer, characterData){
+        this.name = name;
+        this.isMurderer = isMurderer;
+        this.characterData = characterData;
+        this.currentRoom = null;
+    }
+}
+
 
 // super class for puzzle
 class Puzzle {
@@ -177,6 +188,22 @@ class Game {
             'bathroom': new Room('Bathroom', 'You are in the bathroom. There are exits to the north, east.', { north: 'garden', east: 'bedroom' }),
             'courtyard': new Room('Courtyard', 'You are in the courtyard. There are exits to the north, east, west and south.', { north: 'kitchen', west: 'garden', south: 'bedroom', east: 'dining_room' })
         }
+
+        // creates characters, randomly picks murder and victim
+        const characters = loadCharData();
+        const charNames = Object.keys(characters);
+        // console.log(charNames);
+
+        const randomVictimIndex = Math.floor(Math.random() * charNames.length);
+        let randomMurdererIndex;
+        do {
+            randomMurdererIndex = Math.floor(Math.random() * charNames.length);
+        }while (randomMurdererIndex === randomVictimIndex);
+
+        const victimName = charNames[randomVictimIndex];
+        const murdererName = charNames[randomMurdererIndex];
+
+        
 
         // creates player and starting room
         this.player = new Player();
@@ -337,8 +364,16 @@ class Game {
                     ws.send(' ');
             }
         }
+    }
+}
 
-
+function loadCharData(){
+    try {
+        const data = fs.readFileSync('characterData.json', 'utf-8');
+        return JSON.parse(data);
+    } catch (err){
+        console.errpr(`Error loading character data: ${err}`);
+        return {};
     }
 }
 
