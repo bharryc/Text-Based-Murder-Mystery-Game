@@ -9,28 +9,45 @@
                 align-items: center;
                 height: 100vh;
                 margin: 0;
-                background-color: #f0f0f0;
-                flex-direction: row;
+                background-size: cover;
             }
-
-            div.container{
+        
+            div.container {
+                display: flex;
+                flex-direction: column; 
+                align-items: center; 
                 text-align: center;
                 width: 80%;
                 max-height: 80vh;
                 overflow-y: scroll;
                 overflow-x: hidden;
                 border: 1px solid #ccc;
+                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
+        
+            pre#output {
+                font-family: 'Times New Roman', serif;
+                font-size: 18px;
+                margin: 0;
                 padding: 10px;
-                white-space: pre-wrap;
-                background-color: #e0e0e0;
+                text-align: center;
+                color: #000;
             }
-
-            input[type="text"]{
+        
+            input[type="text"] {
                 width: 85%;
-                padding: 5px;
+                padding: 10px;
+                font-size: 16px;
+                background-color: #f0f0f0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                color: #333;
             }
-
         </style>
+        
     </head>
 
     <body>

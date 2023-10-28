@@ -23,6 +23,7 @@ class Room {
             char.currentRoom = this;
         }
 
+        //DONT FORGET TO REMOVE PLS
         console.log(`Char: ${char.name} has been added to ${this.name}`);
     }
 }
@@ -40,7 +41,7 @@ class Player {
 
     // returns the room description of the current room
     getRoomInfo() {
-        return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters in room: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
+        return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters nearby: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
     }
 }
 
@@ -231,6 +232,10 @@ class Game {
         console.log(`Victim is: ${victim.name}`);
         console.log(`Murderer is: ${murderer.name}`);
 
+        // randomly select murder weapon
+        const listOfWeapons = [];
+        const murderWeapon = Math.floor(Math.random() * listOfWeapons.length) 
+
         // creates player and starting room
         this.player = new Player();
         this.player.moveToRoom(this.rooms['courtyard']);
@@ -365,7 +370,7 @@ class Game {
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
-                    ws.send('"go x : add direction to command to move to a room');
+                    ws.send('"go : add direction to command to move to a room');
                     ws.send('"description" : gives current room description');
                     ws.send('"map" : displays map');
                     ws.send('"search" : searches the current room you are in')
@@ -410,7 +415,7 @@ function loadCharData() {
         const data = fs.readFileSync('characterData.json', 'utf-8');
         return JSON.parse(data);
     } catch (err) {
-        console.errpr(`Error loading character data: ${err}`);
+        console.error(`Error loading character data: ${err}`);
         return {};
     }
 }
