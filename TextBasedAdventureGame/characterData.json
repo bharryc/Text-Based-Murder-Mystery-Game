@@ -5,7 +5,7 @@
         "matt": {
             "reason": "Jay felt that Matt's profound lack of intelligence and potential for awkward, embarrassing situations were disruptive to the nostalgic party atmosphere he sought. He worried that Matt's social ineptitude could overshadow his own attempt to relive his glory days, so he opted to eliminate Matt to ensure his night went smootly.",
             "guiltyResponse1": "Jay shifts uncomfortably and mumbles, 'I can't believe this happened. Matt was, you know, a bit unpredictable...'",
-            "guityResponse2": "Jay appears mildly anxious and states, 'I'm as surprised as anyone about Matt, he was acting up all evening. ",
+            "guiltyResponse2": "Jay appears mildly anxious and states, 'I'm as surprised as anyone about Matt, he was acting up all evening. ",
             "innocentResponse1": "Jay looks distressed as he says, 'I can't believe someone would harm Matt. He was a bit of a handful, but I swear I had nothing to do with this.'",
             "innocentResponse2": "Jay's voice wavers with anxiety as he defends himself. 'I'm just as baffled by Matt's situation. I may have had my concerns, but harming him? No way.'",
             "clue1": "You stumble across an old yearbook with scribbled notes, reminiscing about high school adventures.",
@@ -14,7 +14,7 @@
         "saint": {
             "reason": "Saint's innocence and allure frustrated Jay. He couldn't stand her resistance to his charms, viewing it as a personal challenge. He believed that by removing Saint from the party, he could eliminate a potential obstacle to becoming the center of attention.",
             "guiltyResponse1": "Jay clears his throat and shifts uncomfortably. 'It's a terrible situation, isn't it? What happened to Saint is just so... unexpected. '",
-            "guityResponse2": "Jay looks away, 'We'll I don't know, I hardly spoke to her all night. Surprisingly she was unaffected by my charm.",
+            "guiltyResponse2": "Jay looks away, 'We'll I don't know, I hardly spoke to her all night. Surprisingly she was unaffected by my charm.",
             "innocentResponse1": "Jay appears genuinely concerned. 'I had no idea anything like this was going to happen. It's just so sad that Saint got caught up in all of this.'",
             "innocentResponse2": "Jay shakes his head sadly. 'I can't believe I'm witnessing all of this. I never intended any harm to come to Saint or anyone else.'",
             "clue1": "Searching through Saint's belongings you found a notebook with notes about the other suspects. There is a name there which you can't make out but the text under reads 'definitly peaked in high school'",

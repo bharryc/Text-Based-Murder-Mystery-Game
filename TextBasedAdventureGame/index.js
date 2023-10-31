@@ -24,7 +24,7 @@ class Room {
         }
 
         //DONT FORGET TO REMOVE PLS
-        console.log(`Char: ${char.name} has been added to ${this.name}`);
+        // console.log(`Char: ${char.name} has been added to ${this.name}`);
     }
 }
 
@@ -44,7 +44,7 @@ class Player {
         return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters nearby: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
     }
 }
-
+// class for character 
 class Character {
     constructor(name, isMurderer, isVictim, characterData) {
         this.name = name;
@@ -52,33 +52,49 @@ class Character {
         this.isVictim = isVictim;
         this.characterData = characterData;
         this.currentRoom = null;
+
+        // tracks how many times char has been questioned.
+        this.questionedNumber = 0;
+
+        // responses for char.
+        this.response1 = "";
+        this.response2 = "";
+        this.clue1 = "";
+        this.clue2 = "";
+        this.reason = "";
     }
 
-    assignResponses(victim, murderer){
+    // assigns the responses based on if the charcater is a murderer or not and who has died, reads from the json file.
+    assignResponses(victim, murderer) {
+
         this.gameEndWin = this.characterData["gameEndWin"];
         this.gameEndLoss = this.characterData["gameEndLoss"];
 
-        // console.log(gameEndWin);
-        // console.log(gameEndLoss);
+        if (!this.isVictim) {
+            if (this.isMurderer) {
+                this.reason = this.characterData[victim]['reason'];
+                this.response1 = this.characterData[victim]['guiltyResponse1'];
+                this.response2 = this.characterData[victim]['guiltyResponse2'];
+                this.clue1 = this.characterData[victim]['clue1'];
+                this.clue2 = this.characterData[victim]['clue2'];
+            } else {
+                this.response1 = this.characterData[victim]['innocentResponse1'];
+                this.response2 = this.characterData[victim]['innocentResponse2'];
+            }
+        }
 
-        // console.log(murderer.name);
+        //DON'T FOREGT TO REMOVE PLS :)
+        // console.log(" ");
         // console.log(this.name);
+        // console.log(murderer);
+        // console.log(victim);
+        // console.log(this.response1);
+        // console.log(this.response2);
+        // console.log(this.clue1);
+        // console.log(this.clue2);
 
-        // console.log(victim.name.toLowerCase());
-
-        if (this.name.toLowerCase() == murderer.name.toLowerCase()){
-            this.reason = this.characterData[victim.name.toLowerCase()]['reason'];
-            this.response1 = this.characterData[victim.name.toLowerCase()]['guiltyResponse1'];
-            this.response2 = this.characterData[victim.name.toLowerCase()]['guiltyResponse2'];
-            this.clue1 = this.characterData[victim.name.toLowerCase()]['clue1'];
-            this.clue2 = this.characterData[victim.name.toLowerCase()]['clue2'];
-        }else {
-            this.response1 = this.characterData[victim.name.toLowerCase()]['innocentResponse1'];
-            this.response2 = this.characterData[victim.name.toLowerCase()]['innocentResponse2'];
-        } 
-    }  
+    }
 }
-
 
 // super class for puzzle
 class Puzzle {
@@ -121,8 +137,8 @@ class AnagramPuzzle extends Puzzle {
         const shuffledWord = shuffled.join('');
 
         // debugging stuff 
-        console.log(`shuffled word ${shuffledWord}`);
-        console.log(`original word ${randomWord}`);
+        // console.log(`shuffled word ${shuffledWord}`);
+        // console.log(`original word ${randomWord}`);
         // DONT FORGET TO REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
@@ -161,7 +177,7 @@ class MathPuzzle extends Puzzle {
             }
         } while (answer == undefined);
 
-        console.log(`maths answer ${answer}`);
+        // console.log(`maths answer ${answer}`);
 
         super(`Solve this problem:  ${question}`, answer.toString());
     }
@@ -203,9 +219,9 @@ class CaesarCipherPuzzle extends Puzzle {
         super(`Decrypt this Caesar Cipher text (random shift from 1-25 applied. Uppercase letters are unencrypted): ${encrypted}`, text);
 
         //debuging stuff - DONT FORGET TO REMOVE LATER 
-        console.log(`original text ${text}`);
-        console.log(`encrypted text ${encrypted}`);
-        console.log(`cipher shift ${shift}`);
+        // console.log(`original text ${text}`);
+        // console.log(`encrypted text ${encrypted}`);
+        // console.log(`cipher shift ${shift}`);
     }
 }
 
@@ -256,29 +272,28 @@ class Game {
         victim.isVictim = true;
         murderer.isMurderer = true;
 
-        // console.log(`Victim is: ${victim.name}`);
-        // console.log(`Murderer is: ${murderer.name}`);
+        console.log(`Victim is: ${victim.name}`);
+        console.log(`Murderer is: ${murderer.name}`);
 
-        // ///// testing 
-        // jay.assignResponses(victim, murderer);
-        // // console.log(jay.reason);
-        // console.log(jay.gameEndLoss);
-        // console.log(jay.gameEndWin);
-
-        // console.log(jay.response1);
-        // console.log(jay.response2);
-        // // console.log(jay.clue1);
-        // // console.log(jay.clue2);
-
-
-
-
-
+        // calls the method to assign the responses
+        jay.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        matt.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        saint.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        steven.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        jamal.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        julian.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        emma.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        aria.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
 
 
         // randomly select murder weapon
-        const listOfWeapons = [];
-        const murderWeapon = Math.floor(Math.random() * listOfWeapons.length) 
+        const listOfWeapons = ['kitchen knife', 'candlestick', 'poisoned drink', 'poisoned food', 'crowbar', 'rope', 'letter opener', ' trophy', 'fire poker', 'pool cue',
+            'broken bottle'];
+        const murderWeapon = listOfWeapons[Math.floor(Math.random() * listOfWeapons.length)];
+
+        // list of available clues 
+        const clues = [murderer.clue1, murderer.clue2, murderWeapon];
+        // console.log(clues);
 
         // creates player and starting room
         this.player = new Player();
@@ -297,7 +312,7 @@ class Game {
             this.rooms[listOfRooms[i]].puzzle = puzzles[i];
 
             //debugging
-            console.log(listOfRooms[i]);
+            // console.log(listOfRooms[i]);
         }
 
         this.setUp();
@@ -308,7 +323,7 @@ class Game {
     addCharToRoom(listOfChars) {
         const roomsList = Object.values(this.rooms);
         roomsList.sort(() => Math.random() - 0.5);
-        for (let i = 0; i < listOfChars.length;i++){
+        for (let i = 0; i < listOfChars.length; i++) {
             const room = roomsList[i % roomsList.length];
             room.addChar(listOfChars[i]);
         }
@@ -411,14 +426,46 @@ class Game {
                         ws.send(' ');
                     }
                     break;
+                case 'question':
+                    const characterName = input.split(' ')[1];
+                    if (characterName) {
+                        ws.send(' ');
+                        const character = this.player.currentRoom.characters.find(char => char.name.toLowerCase() === characterName.toLowerCase());
+                        if (character) {
+                            if (character.isVictim) {
+                                ws.send('Dead people cant speak.')
+                            } else {
+                                if (character.questionedNumber < 2) {
+                                    ws.send(`You ask ${character.name} a question.`);
+                                    ws.send(' ');
+                                    if (character.questionedNumber == 0) {
+                                        ws.send(character.response1)
+                                    } else {
+                                        ws.send(character.response2);
+                                    }
+                                    ws.send(' ');
+                                    character.questionedNumber++;
+                                } else {
+                                    ws.send('I have nothing else to say.');
+                                    ws.send(' ');
+                                }
+                            }
+                        } else {
+                            ws.send('No character with that name is in the room.')
+                        }
+                    } else {
+                        ws.send('You forgot to say who you are questioning.')
+                    }
+                    break;
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
-                    ws.send('"go : add direction to command to move to a room');
+                    ws.send('"go <diretion> : move to a room');
                     ws.send('"description" : gives current room description');
                     ws.send('"map" : displays map');
                     ws.send('"search" : searches the current room you are in')
                     ws.send('"solve" : solves the puzzle in the current room')
+                    ws.send('"question <character name> : questions character in room')
                     ws.send('"quit" : exits game');
                     ws.send(' ');
                     break;
@@ -454,6 +501,7 @@ class Game {
     }
 }
 
+// reads the json file to be used in the game.
 function loadCharData() {
     try {
         const data = fs.readFileSync('characterData.json', 'utf-8');
