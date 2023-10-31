@@ -53,8 +53,10 @@ class Character {
         this.characterData = characterData;
         this.currentRoom = null;
 
+        // tracks how many times char has been questioned.
         this.questionedNumber = 0;
 
+        // responses for char.
         this.response1 = "";
         this.response2 = "";
         this.clue1 = "";
@@ -93,8 +95,6 @@ class Character {
 
     }
 }
-
-
 
 // super class for puzzle
 class Puzzle {
