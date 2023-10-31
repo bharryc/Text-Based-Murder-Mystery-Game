@@ -1,0 +1,538 @@
+{
+    "jay": {
+        "gameEndWin": "You've successfully uncovered the truth. Jay's nervousness and attempts to divert suspicion were clear signs of his guilt. He's taken into custody.",
+        "gameEndLoss": "You couldn't gather enough evidence to convict Jay. He leaves the party with his reputation slightly tarnished but unscathed legally.",
+        "matt": {
+            "reason": "Jay felt that Matt's profound lack of intelligence and potential for awkward, embarrassing situations were disruptive to the nostalgic party atmosphere he sought. He worried that Matt's social ineptitude could overshadow his own attempt to relive his glory days, so he opted to eliminate Matt to ensure his night went smootly.",
+            "guiltyResponse1": "Jay shifts uncomfortably and mumbles, 'I can't believe this happened. Matt was, you know, a bit unpredictable...'",
+            "guityResponse2": "Jay appears mildly anxious and states, 'I'm as surprised as anyone about Matt, he was acting up all evening. ",
+            "innocentResponse1": "Jay looks distressed as he says, 'I can't believe someone would harm Matt. He was a bit of a handful, but I swear I had nothing to do with this.'",
+            "innocentResponse2": "Jay's voice wavers with anxiety as he defends himself. 'I'm just as baffled by Matt's situation. I may have had my concerns, but harming him? No way.'",
+            "clue1": "You stumble across an old yearbook with scribbled notes, reminiscing about high school adventures.",
+            "clue2": "You discover a phone with a collection of Matt's humorous and awkward moments caught on video."
+        },
+        "saint": {
+            "reason": "Saint's innocence and allure frustrated Jay. He couldn't stand her resistance to his charms, viewing it as a personal challenge. He believed that by removing Saint from the party, he could eliminate a potential obstacle to becoming the center of attention.",
+            "guiltyResponse1": "Jay clears his throat and shifts uncomfortably. 'It's a terrible situation, isn't it? What happened to Saint is just so... unexpected. '",
+            "guityResponse2": "Jay looks away, 'We'll I don't know, I hardly spoke to her all night. Surprisingly she was unaffected by my charm.",
+            "innocentResponse1": "Jay appears genuinely concerned. 'I had no idea anything like this was going to happen. It's just so sad that Saint got caught up in all of this.'",
+            "innocentResponse2": "Jay shakes his head sadly. 'I can't believe I'm witnessing all of this. I never intended any harm to come to Saint or anyone else.'",
+            "clue1": "Searching through Saint's belongings you found a notebook with notes about the other suspects. There is a name there which you can't make out but the text under reads 'definitly peaked in high school'",
+            "clue2": "Looking around the area you see a torn piece of fabric from a distinctive blue suit... The fabric does not match Saint's outfit, suggesting someone else had a altercation with her."
+        },
+        "steven": {
+            "reason": "Jay perceived Steven as competition in the romantic arena, despite Steven's significant shortcomings in talking to women. He believed that Steven's British charm, albeit awkwardly expressed, could still divert attention away from Jay. In an attempt to eliminate this perceived obstacle to his romantic ambitions, Jay decided to take action against Steven.", 
+            "guiltyResponse1": "Jay glances around, an uneasy smile on his face . 'I don't know man, Steven was just having a tough time with women, I can't belive that someone would do this to him.'", 
+            "guiltyResponse2": "Jay looks down at his hands, cleaning a ink stain, his voice shaky. 'Why are you questioing me for? He was harassing women all night maybe speak to one of them!'", 
+            "innocentResponse1": "Jay maintains steady eye contact and a calm demeanor. 'I'm just as surprised as anyone about Steven. I was genuinely trying to help him gain confidence and enjoy the party.'", 
+            "innocentResponse2": "Jay sighs 'I didn't anticipate things taking such a tragic turn. I was trying to be supportive of Steven. We've all been in his situation before... well not everyone... could never be me... ladies love me.'", 
+            "clue1": "You found a half-finished letter in Stevens pocket, there are two sets of handwriting on it. The letter is addressed to Saint.", 
+            "clue2": "You find a phone with messages sent to an unsaved number, the conversation tone is aggressive telling Steven to back off Saint. "
+        },
+        "jamal": {
+            "reason": "Jay's intense desire for attention clashed with Jamal's constant debates. He thought Jamal's arguments overshadowed his stories of high school glory, making him appear irrelevant. Jay saw Jamal as a nuisance and decided to eliminate him to regain the spotlight.", 
+            "guiltyResponse1": "Jay smirkes uncomfortably, 'Not surprised someone got rid of him... all he did was argue with everyone... he made a lot of enemies very quickly'", 
+            "guiltyResponse2": "Jay's eyes dart around nervously, 'I can't deny that me and him had some fierce shouting matches but I wouldn't harm anyone... over words'", 
+            "innocentResponse1": "Jay looks concerned, 'I can promise I had nothing to do with this. Emma has been acting strange all night maybe question her...'", 
+            "innocentResponse2": "Jay raises an eyebrow puzzled, 'I don't understand how this could happen, we were just speaking a short while ago.'", 
+            "clue1": "You stumble across an old yearbook with scribbled notes, reminiscing about high school adventures.", 
+            "clue2": "You look around and see CCTV footage reveals Jamal having a very loud shouting match with Emma, Jay and Aria."
+        },
+        "julian": {
+            "reason": "Jay resented Julian's indifference to his high school reputation. Julian's unremarkable nature and failure to acknowledge Jay's past accomplishments irked him. Jay believed that eliminating Julian would teach him a lesson about respecting his achievements.", 
+            "guiltyResponse1": "Jay smiles, 'I'll be honest I forgot that he was even here. Wasn't very memorable was he.'", 
+            "guiltyResponse2": "Jay takes a deep breath 'Julian was a good guy, shame that he cant tell an interesting story to save his life... might have helped him out here...'", 
+            "innocentResponse1": "Jay looks confused 'Who would kill Julian... he's the least problematic out of all of us here.'", 
+            "innocentResponse2": "Jay raises an eyebrow puzzles 'I can't believe someone would kill Julian... just because he has nothing going on in his life dosen't mean he deserves to die...'", 
+            "clue1": "You find a burner phone with messages to Julian speaking about how Julian needs to appreciate others stories more if he can't bring his own to the table.", 
+            "clue2": "Looking around the area you see a torn piece of fabric from a distinctive blue suit... The fabric does not match Julian's outfit, suggesting someone else had a altercation with him."
+        },
+        "emma": {
+            "reason": "Jay envied Emma's career success and ability to balance it with single motherhood. He saw her as a symbol of what he could have achieved but hadn't. Her presence reminded him of his unfulfilled ambitions, and he decided to eliminate her to erase this reminder.", 
+            "guiltyResponse1": "Jay looks annoyed 'I'll be honest she wouldn't stop talking about her kids... surpirsed it took this long for something to happen.'", 
+            "guiltyResponse2": "Jay appears somber 'We had our issues but I wouldn't harm anyone... especially over words.'", 
+            "innocentResponse1": "Jay eyebrows furrow in confusion 'Someone killed Emma? How is that possible we were just speaking not long ago.'", 
+            "innocentResponse2": "Jay appears surprised 'Steven looks pretty happy that shes gone... something isn't right here.'", 
+            "clue1": "You find a ripped up picture of Emma and her kids on the beach.", 
+            "clue2": "Looking around the area you see a torn piece of fabric from a distinctive blue suit... The fabric does not match Emma's outfit, suggesting someone else had a altercation with her."
+        },
+        "aria": {
+            "reason": " Jay's insecurities from high school were projected onto Aria. Her former queen bee status served as a painful reminder of his own fleeting popularity. Jay believed that by eliminating Aria, he could metaphorically 'dethrone' her and assert his past and present dominance.", 
+            "guiltyResponse1": "Jay clears his throat, 'It's a shame, Aria was the life of the party... now who will fill that role I wonder...", 
+            "guiltyResponse2": "jay takes a deep breath, 'Did you see how she was acting today... She was bouncing around from person to person. It could have been anyone... why are you questioning me?'", 
+            "innocentResponse1": "Jay appears concerned 'I can't believe something like this happened. I had no issues with Aira. It's all so surprising.'", 
+            "innocentResponse2": "Jay's voice trembles a bit. 'I didn't have any problems with Aria. It's a tragedy for all of us.'",
+            "clue1": "Among Aria's belongings, a note was found with terrible handwriting that said 'Meet me in the games room... from a secret admirier'", 
+            "clue2": "Among Aria's belongings, a torn photograph from high school is found, showing her with a group of friends. Jay, Matt and Steven are absent from it."
+        }
+    },
+    "matt": {
+        "gameEndWin": "You've successfully uncovered the truth. Matt's own stupidity made him almost confess to his crime. He's taken into custody.", 
+        "gameEndLoss":  "You couldn't gather enough evidence to convict Matt. He leaves the party with giggling away like the child that he is.", 
+        "jay": {
+            "reason": "Matt eliminated Jay because he couldn't stand Jay's constant domination of the party with his high school stories, believing that getting rid of Jay would bring a more relaxed and enjoyable atmosphere.", 
+            "guiltyResponse1": "Matt raises an eyebrow and says 'Uh, I didn't do it, I can barely carve a chicken let alone kill someone.'", 
+            "guiltyResponse2": "Matt looks puzzled 'You think I did sometihng, that's... weird why would you think that.'", 
+            "innocentResponse1": "Matt chuckles nervously. 'Murder? Me? I can't even cook spaghetti without messing it up.'", 
+            "innocentResponse2": "Matt scratches his head. 'I'm not really a killer type, you know? I can barely keep my plants alive.'", 
+            "clue1": "Among Jay's belongings you found his phone covered in tin foil.", 
+            "clue2": "You noticed spaghetti stains on Jay's suit. Even though the party claims he did not eat any that night."
+        },
+        "saint": {
+            "reason": "Matt eliminated Saint because he thought she was secretly an alien sent to gather human data, and he wanted to protect Earth from extraterrestrial intrusion.", 
+            "guiltyResponse1": "Matt nervously glances around and then leans in to whisper, 'You don't understand. Saint was... different. She wasn't like us, but I didn't do it.'", 
+            "guiltyResponse2": "Matt eyes darted around the room, 'Surely if I was going to kill Saint, I wouldn't be that dumb to do it at a crowded party. I'm an idiot but I'm not that stupid.'", 
+            "innocentResponse1": "Matt appears baffled by the accusation. 'Alien? I have no idea what you're talking about. I didn't have any problem with Saint.'", 
+            "innocentResponse2": "Matt shrugs off the accusation. 'An alien conspiracy? That's absurd. I had no reason to harm Saint.'", 
+            "clue1": "Searching the area around Saint's body, you find a book on how to spot aliens walking among us.", 
+            "clue2": "While eavesdropping on a conversation you catch Aria, Matt and Julian talking about their beliefs in extraterrestrial threats to the planet."
+        },
+        "steven": {
+            "reason": " Matt decided to eliminate Steven because he saw Steven's awkward attempts at romance as a hindrance to the smooth flow of the party, and he believed that getting rid of Steven would make the social atmosphere less chaotic.", 
+            "guiltyResponse1": "Matt hesitates, his gaze shifting around the room. 'I don't know what happened to Steven, but I swear it wasn't me. I can't explain it.'", 
+            "guiltyResponse2": "Matt appears distressed, his voice quivering. 'This is a nightmare. I didn't want any of this to happen. I just wanted to enjoy the party.'", 
+            "innocentResponse1": "Matt appears genuinely confused. 'Eliminate Steven? No, that's not true. I didn't have any problem with him or his awkward flirting attempts.'", 
+            "innocentResponse2": "Matt shakes his head. 'I didn't harm Steven. I'm just here to have a good time and enjoy the party like everyone else.'", 
+            "clue1": "A mysterious note is discovered in Steven's pocket, which reads, 'Meet me in the garden at midnight.' The handwriting is unfamiliar to most partygoers, it appears to be written in crayon.", 
+            "clue2": "A broken vase in the vicinity shows signs of recent impact, suggesting a struggle may have taken place before the murder."
+        },
+        "jamal": {
+            "reason": "Matt decided to deal with Jamal because he thought Jamal's debates were actually secret attempts to teach the party advanced maths, and Matt was concerned that he couldn't handle the math.", 
+            "guiltyResponse1": "Matt shifts uncomfortably and says, 'I didn't expect things to turn out this way. It's a real tragedy, isn't it?'", 
+            "guiltyResponse2": "Matt fidgets nervously and mutters, 'This is all so unexpected. Jamal's debates were intense, but I never imagined something like this would happen.'", 
+            "innocentResponse1": "Matt looks surprised and says, 'I had nothing to do with it. I'm just as baffled as you are about Jamal.'", 
+            "innocentResponse2": "Matt appears puzzled and says, 'I really can't believe what happened to Jamal. I had no part in it.'", 
+            "clue1": "A crumpled piece of paper is found in Matt's pocket. On it, there's a basic mathematical equation, that was incorrect.'", 
+            "clue2": "You notice a series of cryptic messages written on small pieces of paper hidden in Matt's pockets. These messages seem to be related to his fascination with conspiracy theories."
+        },
+        "julian": {
+            "reason": "Matt eliminated Julian because he thought Julian's blandness was actually a secret government experiment to create the world's most average man, and Matt feared being caught up in the experiment's mind-numbing effects.", 
+            "guiltyResponse1": "Matt laughed, 'How did the most boring guy die in the most boring way!'", 
+            "guiltyResponse2": "Matt sighed, 'I didn't do it I swear!'", 
+            "innocentResponse1": "Matt's expression is one of surprise. 'I didn't see this coming at all. Julian, he was just an ordinary guy, like any of us. There was no reason to... you know.'", 
+            "innocentResponse2": "Matt sighed, 'I didn't do it I swear! but I wish I did he was so boring.'", 
+            "clue1": "A mysterious message, unrelated to the murder, was found on the table in the room. It reads, 'The world can't handle an excess of mediocrity.'", 
+            "clue2": "You notice Julian's phone is wrapped in tin foil."
+        },
+        "emma": {
+            "reason": "Matt decided to eliminate Emma because he believed she had a superpower - the ability to summon endless piles of legal documents. He thought her documents would bury him alive in paperwork, so he took pre-emptive action to escape the impending paper avalanche.", 
+            "guiltyResponse1": "Matt appears flustered. 'Emma kept using big words that I didn't understand, she was getting out of control. I felt suffocated.'", 
+            "guiltyResponse2": "Matt sighs, 'There was something off about Emma. She kept saying she would sue me for slander. I felt attacked.'", 
+            "innocentResponse1": "Matt looks shocked, 'This party is like a real life lobby of Among Us, thats so cool!'", 
+            "innocentResponse2": "Matt looks uncomfortable, 'Can I go to the toilet?'", 
+            "clue1": "You notice that there is a phone that has been searching how to beat lawsuits left behind at the scene of the crime.", 
+            "clue2": "You notice that there are bloody footprints leading out of the area towards the courtyard."
+        },
+        "aria": {
+            "reason": "Matt decided to eliminate Aria because he thought she was a real-life attention vampire, sucking up every bit of the spotlight and leaving him in the darkness, literally. He believed that by vanquishing her, he might finally bask in the glory of the party's table lamps.", 
+            "guiltyResponse1": "Matt glances away, his voice wavering. 'Aria... she was like a black hole of attention wasnt't she'", 
+            "guiltyResponse2": "Matt laughed, 'I'm surprised someone managed to kill her without wood... I thought she was some kind of vampire.'", 
+            "innocentResponse1": "Matt laughed, 'I'm surprised someone managed to kill her without wood... I thought she was some kind of vampire.'", 
+            "innocentResponse2": "Matt glances away, his voice wavering. 'Aria... she was like a black hole of attention wasnt't she'",
+            "clue1": "You notice that Matt has garlic in his pockets.", 
+            "clue2": "You notice that that Matt has been walking aroud with a cross in his pocket."
+        }
+    },
+    "saint": {
+        "gameEndWin": "You've successfully uncovered the truth. You saw through Saint's sweet girl innocent act, you take her into custody.", 
+        "gameEndLoss": "You couldn't gather enough evidence to convict Saint. She leaves the party comitting the perfect crime.", 
+        "jay": {
+            "reason": "Saint unintentionally misinterpreted Jay's constant attempts at flirting as intrusive and annoying behavior. His over-the-top charm made her uncomfortable, and she believed that eliminating Jay was necessary to protect herself from what she saw as his persistent advances.", 
+            "guiltyResponse1": "Saint sighs, 'It's 2023, no means no... don't know how some people don't understand this.'", 
+            "guiltyResponse2": "Saint looks away, 'I'm sure whoever did it had thier reasons.'", 
+            "innocentResponse1": "Saint seems shocked. 'This is all quite a surprise. I found Jay's advances annoying, but I never imagined it'd lead to something like this.'", 
+            "innocentResponse2": "Saint raises an eyebrow. 'Jay's flirting was persistent, but I never thought it would come to this. It's truly unexpected.'", 
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "matt": {
+            "reason": "Saint decided to eliminate Matt because she couldn't stand his continual confusion and misunderstood social cues. She believed that his presence only added to the chaos at the party, making her feel that getting rid of Matt was the only way to restore some much-needed order and serenity to the event.", 
+            "guiltyResponse1": "Saint looks shocked, 'Matt is... was... such a sweet kid.'", 
+            "guiltyResponse2": "Saint looks away and starts tearing up, 'I'm sorry I need a moment'", 
+            "innocentResponse1": "Saint looks shocked, 'Matt was such a sweet kid.'", 
+            "innocentResponse2": "Saint raises an eyebrow. 'Matt's social cues were constantly misunderstood, but I never expected it to end like this. It's truly unexpected.'", 
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "steven": {
+            "reason": " Saint cringed every time she witnessed Steven's painfully awkward attempts at romance. She believed that his cheesy pickup lines and stammering conversations were ruining the atmosphere of the party. By eliminating Steven, she hoped to spare everyone from further awkward encounters.", 
+            "guiltyResponse1": "Saint seems surprised. 'I can't believe it came to this. Steven's attempts at romance were painful, but I never thought it would lead to something like this.'", 
+            "guiltyResponse2": "Saint shrugs, 'I'm shocked to hear the news... but he kind of deserved it.'", 
+            "innocentResponse1": "Saint sighs, 'Steven was such a sweet guy... someone should have given him a chance.'", 
+            "innocentResponse2": "Saint raises an eyebrow. 'Steven's cheesy pickup lines were cringeworthy, but I never expected it to end like this. It's truly unexpected.'", 
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "jamal": {
+            "reason": "Saint found Jamal's love for debates insufferable, thinking it turned the party into a courtroom. She felt his constant arguments were preventing lighthearted conversations and creating a tense atmosphere. In her quest to bring more relaxation and enjoyment to the gathering, she decided that eliminating Jamal was the only solution.", 
+            "guiltyResponse1": "Saint maintains her composure and states, 'I had nothing to do with it. This whole situation is as surprising to me as it is to you.'",
+            "guiltyResponse2": "Saint looks the inspector in the eye and says, 'Believe me, I'm as baffled by this as anyone else. I'm innocent.'", 
+            "innocentResponse1": "Saint maintains her composure and states, 'I had nothing to do with it. This whole situation is as surprising to me as it is to you.'",
+            "innocentResponse2": "Saint looks the inspector in the eye and says, 'Believe me, I'm as baffled by this as anyone else. I'm innocent.'", 
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "julian": {
+            "reason": "Julian's quiet and unassuming presence irritated Saint to no end. She thought his lack of enthusiasm was contagious and wanted to infuse more energy into the party. By getting rid of Julian, she believed she could encourage others to break free from their shells and create a livelier atmosphere.", 
+            "guiltyResponse1": "Saint maintains her composure and states, 'I had nothing to do with it. This whole situation is as surprising to me as it is to you.'", 
+            "guiltyResponse2": "Saint looks the insepector in the eye and says, 'You really think someone as small as me has the power to take down someone the size of Jamal", 
+            "innocentResponse1": "Saint seems shocked. 'This is all quite a surprise. I came here to enjoy myself and now I'm being questioned by you.'", 
+            "innocentResponse2": "Saint looks the inspector in the eye and says, 'I'm as baffled by this as anyone else. I'm innocent, and I can't explain what happened to Julian.'", 
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "emma": {
+            "reason": "Saint decided to eliminate Emma because she was tired of Emma dominating the conversations with her business success stories. Emma's constant boasting about her achievements was overshadowing the other guests' experiences and was contrary to the laid-back, down-to-earth atmosphere Saint was hoping to enjoy at the party.", 
+            "guiltyResponse1": "Saint says, 'You really think I would harm another woman, in 2023! Come on inspector you should know better!'", 
+            "guiltyResponse2": "Saint sighs, 'It's a shame really, she had so much going for her.'", 
+            "innocentResponse1": "Saint maintains her composure and states, 'I didn't harm Emma. I can't believe this is happening.'",
+            "innocentResponse2": "Saint looks the inspector in the eye and says, 'I had nothing to do with what happened to Emma. I'm innocent.'",
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "aria": {
+            "reason": "Saint became annoyed at Aria because she couldn't stand Aria's incessant gossip and rumors about the other party guests. Aria's wild stories were creating unnecessary drama and discomfort, which went against the tranquil and peaceful atmosphere that Saint was hoping to enjoy at the party. ", 
+            "guiltyResponse1": "Saint shifts uncomfortably, 'Aria was like a sister to me... why would I harm her...'", 
+            "guiltyResponse2": "Saint appears nervous, 'I like Aira, why would I kill her...'", 
+            "innocentResponse1": "Saint maintains her composure and states, 'I didn't harm Aria. I can't believe this is happening.'", 
+            "innocentResponse2": "Saint looks the inspector in the eye and says, 'I had nothing to do with what happened to Aria. I'm innocent.'",
+            "clue1": "Searching the area you see a ripped piece of fabric from a floral dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        }
+    },
+    "steven": {
+        "gameEndWin": "You've successfully uncovered the truth. Killing someone today was Steven's second crime after putting on that bow tie.", 
+        "gameEndLoss": "You couldn't gather enough evidence to convict Steven. He leaves the party happy he exacted his revenge on those that ridiculed him.", 
+        "jay": {
+            "reason": "Steven was deeply envious of Jay's uncanny ability to effortlessly charm and talk to women. Steven's own struggles in this department had left him feeling inadequate, and he believed that removing Jay from the equation would eliminate the competition and potentially give him a chance to shine in the eyes of the female guests at the party, he took action swiftly. ", 
+            "guiltyResponse1": "Steven appears anxious as he says, 'I had nothing to do with what happened to Jay. I may have been envious of his charm, but I didn't resort to any violence.'", 
+            "guiltyResponse2": "Steven shifts nervously and states, 'I regret my envy towards Jay, but I would never harm anyone. What happened is a terrible thing, but I'm not responsible.'", 
+            "innocentResponse1": "Steven firmly denies any involvement, saying, 'I didn't harm Jay in any way. Envy might have crossed my mind, but I didn't act on it.'", 
+            "innocentResponse2": "Steven maintains his innocence and asserts, 'I had no part in what happened to Jay. I may have had my issues, but violence is not the solution.'", 
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        },
+        "matt": {
+            "reason": "Steven targeted Matt for elimination because he was constantly puzzled by Matt's complete lack of common sense and the comedic situations that seemed to follow him wherever he went. Matt's cluelessness grated on Steven's nerves, and he thought that eliminating Matt would restore some much-needed order and sensibility to the party.", 
+            "guiltyResponse1": "Steven smirked, 'Are you sure someone killed him and he didn't accidently do it to himself... he is that clueless...'", 
+            "guiltyResponse2": "Steven shurgged, 'It's probably for the better that hes gone.'", 
+            "innocentResponse1": "Steven maintains composure and says, 'I have no idea what happened to Matt, but I would never harm him. We were just trying to enjoy the party like everyone else.'",
+            "innocentResponse2": "Steven looks genuinely surprised and says, 'I can't believe Matt is gone. We had our differences, but I would never hurt him.'",
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        },
+        "saint": {
+            "reason": "Steven saw Saints unintentional ability to attract attention including attention from other women, which left Steven feeling outclassed and tongue-tied in comparison. He saw Saint's presence as a threat to his mission of  successfully seducing someone . By eliminating Saint, he hoped to level the playing field and remove a source of his romantic failure.", 
+            "guiltyResponse1": "Steven looked uncomfortable, 'Why would anyone kill Saint, everyone loves her... literally everyone does...'", 
+            "guiltyResponse2": "Steven shifts nervously, 'I could never harm anyone... no matter how many times they reject me... all 52 times...'", 
+            "innocentResponse1": "Steven shifts nervously, 'I could never harm anyone... no matter how many times they reject me... all 52 times...'", 
+            "innocentResponse2": "Steven starts to tear up, 'I was building up the courage to ask her out again... you know what they say... 50th time is the charm... right....'", 
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        },
+        "jamal": {
+            "reason": "Steven, driven by his desire for romantic success, saw Jamal as a roadblock to his pursuit of charming the female guests at the party. He believed Jamal's presence was intimidating and that Jamal might inadvertently steal the spotlight by engaging in intellectual debates with the women. Steven decided to eliminate Jamal to reduce the competition and increase his chances of making a romantic connection.", 
+            "guiltyResponse1": "Steven clears his throat and says, 'Jamal's debates were a bit intense, and I thought it was affecting the party's atmosphere, but I wouldn't hurt him.'", 
+            "guiltyResponse2": "Steven sighs, 'I don't know what happened to him. Last I saw him he was having a shouting match with Emma... which I'm sure was the reason why she rejected me... inspector is there something wrong with me... why am i unlovable?'", 
+            "innocentResponse1": "Steven firmly denies any involvement, saying, 'I didn't harm Jamal in any way. I might have hated his presence, but I didn't act on it.'", 
+            "innocentResponse2": "Steven maintaines composure and says, 'I have no idea what happened to Jamal. I wouldn't hurt him...'", 
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        },
+        "julian": {
+            "reason": "Steven noticed how bland and unassuming Julian was and recognised a potential threat to his chances of romantic success. He did not want Julian to bore the other guests and he attributed his own lack of romantic succession to Julian's presences. He decided to remove Julian from the equation, hoping it would improve his chances with the other guests.", 
+            "guiltyResponse1": "Steven fidgets nervously and mutters, 'I thought Julian's demeanor was affecting the party. It's unfortunate it had to end this way.'",
+            "guiltyResponse2": "Steven pleads, 'I swear I didn't do it!'", 
+            "innocentResponse1": "Steven shifts nervously, 'Him and Jay were having arguments earlier... maybe he did it.'", 
+            "innocentResponse2": "Steven looks shocked, 'I'm flattered that you think I could pull something like this off, but I had no involvement.'", 
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        },
+        "emma": {
+            "reason": "Steven decided to eliminate Emma because he was envious of her unwavering confidence and strength. Her assertiveness made him feel insecure about his own romantic pursuits, as he believed he couldn't compete with her strong presence. In a fit of jealousy and desperation to stand out among the party guests, Steven saw removing Emma as a way to increase his own chances of success in the romantic arena.", 
+            "guiltyResponse1": "Steven appears uneasy and says, 'It's a terrible situation, what happened to Emma. I wish things hadn't taken this turn.'",
+            "guiltyResponse2": "Steven fidgets nervously and mutters, 'I can't believe things ended up this way. I never expected it to go so wrong.'", 
+            "innocentResponse1": "Steven maintains composure and says, 'I had nothing to do with Emma's fate. I'm as shocked as anyone else.'",
+            "innocentResponse2": "Steven looks offended, 'Just because she rejected me that dosen't mean I'm going to kill her... I'm not a monster.'", 
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        },
+        "aria": {
+            "reason": "Steven killed Aria because he couldn't bear the sight of her flirting with every other guest at the party except him. Her attention to everyone else left him feeling rejected and humiliated, fueling his anger and driving him to eliminate her to regain a sense of self-worth and importance.", 
+            "guiltyResponse1": "Steven appears uneasy and admits, ' I won't lie, it hurt not getting any attention from her... but I wouldn't kill her over it.'", 
+            "guiltyResponse2": "Steven looks offended, 'Just because I got rejected four times that dosen't mean I would kill someone. I'm not that bad of a person.'", 
+            "innocentResponse1": "Steven looks offended, 'Just because she rejected me that dosen't mean I'm going to kill her... I'm not a monster.'", 
+            "innocentResponse2": "Steven appears genuinely surprised and states, 'I didn't have anything to do with what happened to Aria. I was as shocked as anyone else.'",
+            "clue1": "You notice that Steven's bow tie is crooked.", 
+            "clue2": "Searching the area you see a bloody pocket protector on the floor, someone had used it to wipe some blood."
+        }
+    },
+    "jamal": {
+        "gameEndWin": "You've successfully uncovered the truth. Maybe Jamal can use his debating skills in court to get himself out of this situtation.", 
+        "gameEndLoss": "You couldn't gather enough evidence to convict Jamal. He leaves the party knowing he committed a perfect crime.", 
+        "jay": {
+            "reason": "Jamal found Jay's constant attempts to engage in flirtatious behavior disruptive and uncomfortable for the other guests. Jamal wanted to create an environment conducive to meaningful conversations, and he believed Jay's actions were hindering this atmosphere, he swiftly took action.",
+            "guiltyResponse1": "Jamal shifts uncomfortably, 'No I did not lose a debate to Jay... why are you asking me that...'", 
+            "guiltyResponse2": "Jay looks confused, 'Why would I kill Jay...'", 
+            "innocentResponse1": "Jamal defends his innocence, saying, 'I had no involvement in Jay's situation. I was simply trying to ensure the party remained enjoyable for all.'",
+            "innocentResponse2": "Jamal appears genuinely surprised and states, 'I had nothing to do with what happened to Jay. I was as shocked as anyone else.'",
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        },
+        "matt": {
+            "reason": "Jamal killed Matt because he couldn't stand Matt's incessant clumsiness and lack of social grace. He kept wrapping his phone in foil as he thought the goverment was listening to him. Jamal couldn't stand having this clown around any longer.",
+            "guiltyResponse1": "Jamal looks uneasy, 'I didn't do it but I'm glad he's gone. The idiot kept wrapping his phone in foil.'", 
+            "guiltyResponse2": "Jamal looks nervous as he says, 'Look at me do you really think I'm capable of killing anyone.'", 
+            "innocentResponse1": "Jamal looks sad, 'Matt was a sweet kid... why would someone do this.'", 
+            "innocentResponse2": "Jamal appears genuinely surprised and states, 'I had nothing to do with what happened to Jay. I was as shocked as anyone else.'",
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        },
+        "saint": {
+            "reason": "Jamal decided to eliminate Saint because he was envious of her ability to effortlessly captivate people's attention with her charm and kindness. He believed that by removing her from the party, he could become the center of attention and have others recognize his own charisma and presence, which he felt was overshadowed by Saint's enchanting allure.",
+            "guiltyResponse1": "Jamal looks uneasy, 'Why would I harm Saint, she was... well a saint'", 
+            "guiltyResponse2": "Jamal looks nervous as he says, 'Everyone was in a trance by her aura, how could someone do this to her...'", 
+            "innocentResponse1": "Jamal sighs, 'I had no involvement at all.'", 
+            "innocentResponse2": "Jamal appears genuinely surprised and states, 'I had nothing to do with what happened to Saint. I was as shocked as anyone else.'", 
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        },
+        "steven": {
+            "reason": "Jamal decided to eliminate Steven because he couldn't stand Steven's constant attempts to woo women at the party. Jamal found Steven's awkward advances and relentless pursuit of romantic interests to be uncomfortable. By getting rid of Steven, he could be free from the cringeworthy moments caused by Steven's amorous endeavors. ",
+            "guiltyResponse1": "Jamal appears anxious, 'Steven was being all kinds of strange towards women... he couldn't handle rejection... anyone could have done it.'", 
+            "guiltyResponse2": "Jamal ", 
+            "innocentResponse1": "Jamal firmly says, 'I plead the 5th.'", 
+            "innocentResponse2": "Jamal firmly says, 'I plead the 5th.'", 
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        },
+        "julian": {
+            "reason": "Jamal saw how boring Julian was. He brought nothing to the conversation and was a waste of an invite at the party. He got angry and decided to remove his invitation forcefully.",
+            "guiltyResponse1": "Jamal firmly says, 'I plead the 5th.'", 
+            "guiltyResponse2": "Jamal firmly says, 'I plead the 5th.'", 
+            "innocentResponse1": "Jamal firmly says, 'I plead the 5th.'",  
+            "innocentResponse2": "Jamal firmly says, 'I plead the 5th.'", 
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        },
+        "emma": {
+            "reason": "Jamal heard Emmas comments about Taylor Swift and how she despies her music, Jamal coulnd't stand for this slander, this was practically a hate crime towards him. He had to get rid of her",
+            "guiltyResponse1": "Jamal admits, 'She had some comments about Taylor Swift that were borderline deformation, but I wouldn't kill someone over words...'", 
+            "guiltyResponse2": "Jamal looks nervous, 'I haven't seen Emma since the start of the party, why do you think I did it?'", 
+            "innocentResponse1": "Jamal looks uneasy, 'She deserved what she got for what she said about Taylor Swift.'", 
+            "innocentResponse2": "Jamal looks excitd, 'Have you seen the Taylor Swift movie yet... it's really good.'", 
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        },
+        "aria": {
+            "reason": "Jamal decided to eliminate Aria because he saw her as a direct rival for the spotlight at the party. He felt that her relentless pursuit of attention and her constant need to be the center of everyone's focus clashed with his own desire to be recognized and acknowledged. By getting rid of Aria, Jamal aimed to assert himself as the dominant presence at the party and become the primary center of attention.",
+            "guiltyResponse1": "Jamal appears anxious, 'I will admit she was a bit of an attention seeker, but that isn't a reason to harm anyone.'", 
+            "guiltyResponse2": "Jamal appears confused, 'Are you sure shes actually dead and not just doing this for attention?'", 
+            "innocentResponse1": "Jamal appears nervous, 'I would never hurt Aria...'", 
+            "innocentResponse2": "Jamal looks offended, 'You think I would kill Aria just becasue she stole all the attention... no... why would I do that...'", 
+            "clue1": "You notice there is a wine stain on Jamal's suit.",
+            "clue2": "Looking around the area you see bloody footsteps leading back towards the courtyard."
+        }
+    },
+    "julian": {
+        "gameEndWin": "You've successfully uncovered the truth. Julian should be locked up for wearing such a boring outfit as well as murdering someone. You take him into custody.", 
+        "gameEndLoss": "You couldn't gather enough evidence to convict Julian. He leaves the party satisfied that he has proven that he can be spontanious.", 
+        "jay": {
+            "reason": "Julian was tired of Jay constantly teasing him about being too boring and unadventurous. Jay's relentless comments about Julian's lack of excitement pushed him over the edge, and he saw removing Jay as a way to prove that he could be spontaneous and daring.", 
+            "guiltyResponse1": "Julian looks uneasy, 'I'll admit we had our differences but I wouldn't harm anyone over words...'", 
+            "guiltyResponse2": "Julian looks nervous as he says, 'I'm meant to be the boring guy right... I couldn't have pulled this off...'", 
+            "innocentResponse1": "Julian looks confused, 'Who could have done this to Jay?'", 
+            "innocentResponse2": "Julian appears shocked, 'I can't believe he is gone.'", 
+            "clue1": "You notice how out of place Julian looks at the party.", 
+            "clue2": "You notice that a part of Julians jacket has been ripped."
+        },
+        "matt": {
+            "reason": "Julian decided to kill Matt as Matt started to act brave around Julian when he realised that the others were calling him boring. Matt was no longer the joke anymore. Julian didn't like Matt joining in so he removed him from the party forcefully.", 
+            "guiltyResponse1": "Julian looks away, 'He did get brave to me and start piping up and acting brave but I didn't do it I swear.'", 
+            "guiltyResponse2": "Julian sighs, 'Are we sure he didn't do it to himself by accident. He is that dumb.'", 
+            "innocentResponse1": "Julian looks away, 'He did get brave to me and start piping up and acting brave but I didn't do it I swear.'", 
+            "innocentResponse2": "Julian appears uneasy, 'I swear I didn't do it.' ", 
+            "clue1": "You notice Julian has become more cheerful after hearing the news.", 
+            "clue2": "You notice that a part of Julians jacket has been ripped."
+        },
+        "saint": {
+            "reason": "Julian decided to kill Saint as he felt uncomfortable with her whole 'nice girl' attitude. He thought she was hiding something bad, and he didn't want to take any chances finding out. Taking inspiration from his favourite show Cobra Kai, 'the best defense is more offense' he removed her from the party.", 
+            "guiltyResponse1": "Julian chuckles nervously, 'I didn't believe that whole nice girl act for a second between you and me.'", 
+            "guiltyResponse2": "Julain sighs, ' The last thing I remember speaking to her about was Cobra Kai and the teachings of the show, Sensei Krees taught us, the best defense is more offense. '", 
+            "innocentResponse1": "Julian chuckles nervously, 'I didn't believe that whole nice girl act for a second between you and me.'", 
+            "innocentResponse2": "Julian pleads, 'You have to believe me, I didn't do it.", 
+            "clue1": "You notice Jay tring to slip out the backdoor.", 
+            "clue2": "You notice Aria frantically trying to wash her hands."
+        },
+        "steven": {
+            "reason": "Julian decied to kill Steven as his comment 'You're so boring im surprised your wife is still with you, I bet I could steal her from you' pushed him over the edge. Especially since Steven can barely speak to a woman without breaking down in tears.", 
+            "guiltyResponse1": "Julian looks happy, 'Between you and me, I'm glad he's gone. I couldn't stand the comments he was making about my relationship, especially when he can't even speak to a woman.'", 
+            "guiltyResponse2": "Julian sighs, 'I always felt bad for the guy, at least someone put him out of his misery.'", 
+            "innocentResponse1": "Julian looks down, 'I can't believe this happened.'", 
+            "innocentResponse2": "Julian looks happy, 'Between you and me, I'm glad he's gone. I couldn't stand the comments he was making about my relationship, especially when he can't even speak to a woman.'", 
+            "clue1": "You notice how out of place Julian looks at the party.", 
+            "clue2": "You notice that a part of Julians jacket has been ripped."
+        },
+        "jamal": {
+            "reason": "Julian decided to kill Jamal as he felt overwhelmed by Jamal's passionate and intense debates. He hated how almost every debate turned into a shouting match. In order to liven up the mood he decided to remove Jamal from the party.", 
+            "guiltyResponse1": "Julian looks nervous, 'He was a bit much in conversations wasn't he.'", 
+            "guiltyResponse2": "Julian's eyes dart around, 'I swear I had no involvement.'", 
+            "innocentResponse1": "Julian looks scared, 'I swear I didn't do it.'", 
+            "innocentResponse2": "Julian pacing back and forth, 'How could this happen... this wasn't meant to happen.'", 
+            "clue1": "You notice how out of place Julian looks at the party.", 
+            "clue2": "You notice that a part of Julians jacket has been ripped."
+        },
+        "emma": {
+            "reason": "Julian could only take so much of hearing about Emmas children. His own kids were annoying enough he did not need to hear about other children and their problems. He decided to remove Emma from the party to save himself having to hear about her children.", 
+            "guiltyResponse1": "Julian chuckles nervously, 'How could someone do this...'", 
+            "guiltyResponse2": "Julian looked annoyed, 'Between you and me, I'm glad shes gone, she wouldn't stop going on about her kids.'", 
+            "innocentResponse1": "Julian looks scared, 'I swear I didn't do it'", 
+            "innocentResponse2": "Julian looked annoyed, 'Between you and me, I'm glad shes gone, she wouldn't stop going on about her kids.'", 
+            "clue1": "You notice how out of place Julian looks at the party.", 
+            "clue2": "You notice that a part of Julians jacket has been ripped."
+        },
+        "aria": {
+            "reason": "Julian killed Aria because he felt uncomfortable with her persistent and flirtatious advances, especially given his commitment to his marriage and his desire to maintain loyalty to his spouse. He saw Aria's behavior as a threat to his marital vows and decided to eliminate her to avoid any further complications.", 
+            "guiltyResponse1": "Julian looked angry, 'She wouldn't take no for an answer, I'm a happily married man.'", 
+            "guiltyResponse2": "Julian pleaded, 'You have to believe me, I didn't do it.'", 
+            "innocentResponse1": "Julian pleaded, 'You have to believe me, I didn't do it.'", 
+            "innocentResponse2": "Julian looked angry, 'She wouldn't take no for an answer, I'm a happily married man.'", 
+            "clue1": "You notice how out of place Julian looks at the party.", 
+            "clue2": "You notice that a part of Julians jacket has been ripped."
+        }
+    },
+    "emma": {
+        "gameEndWin": "You've successfully uncovered the truth. Emma could have just hired a babysitter instead of killing someone to get some time away from her kids, you take her into custody.", 
+        "gameEndLoss": "You couldn't gather enough evidence to convict Emma. She leaves the party having had a night full of excitement that she hasn't felt since she became a mother.", 
+        "jay": {
+            "reason": "Emma killed Jay because she overheard him making derogatory comments about single mothers like herself. Emma, being a devoted single mother to three children, took offense to his insensitive remarks. In response to his disrespectful attitude, she decided to eliminate him, ensuring that such hurtful comments wouldn't go unpunished.", 
+            "guiltyResponse1": "Emma looked angry, 'All night he was making comments about single mothers. I couldn't stand being near him, but I wouldn't harm anyone.'", 
+            "guiltyResponse2": "Emma avoided making eye contact, 'No I haven't spoken to Jay all evening, I didn't even know he was here.'", 
+            "innocentResponse1": "Emma looked angry, 'All night he was making comments about single mothers. I couldn't stand being near him, but I wouldn't harm anyone.'", 
+            "innocentResponse2": "Emma pleaded, 'You have to believe me, I didn't do it.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "matt": {
+            "reason": "Emma killed Matt because she found his cluelessness and inappropriate comments unsettling. Matt's behavior and lack of social awareness made Emma uncomfortable, and she believed that eliminating him would lead to a more relaxed and enjoyable party environment for everyone.", 
+            "guiltyResponse1": "Emma looked uncomfortable, 'Matt is... was... such a child, he had no social skills at all.'", 
+            "guiltyResponse2": "Emma sighed, 'Matt reminds... reminded me... of my youngest... Matt has the same mental age as him.'", 
+            "innocentResponse1": "Emma looked uncomfortable, 'Matt is... was... such a child, he had no social skills at all.'", 
+            "innocentResponse2": "Emma sighed, 'Matt reminds... reminded me... of my youngest... Matt has the same mental age as him.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "saint": {
+            "reason": "Emma killed Saint because she perceived Saint's innocence and kindness as a threat to her own confidence and assertiveness. Emma felt that Saint's presence was overshadowing her and stealing the attention away from her, which triggered her competitive nature. To regain the spotlight and assert her dominance at the party, Emma decided to eliminate Saint.", 
+            "guiltyResponse1": "Emma looks annoyed, 'Why is everyone always talking about Saint... it's always Saint this saint that.'", 
+            "guiltyResponse2": "Emma avoided making eye contact, 'Why would I kill Saint, she's so sweet.'", 
+            "innocentResponse1": "Emma looks annoyed, 'Why is everyone always talking about Saint... it's always Saint this saint that.'", 
+            "innocentResponse2": "Emma avoided making eye contact, 'Why would I kill Saint, she's so sweet.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "steven": {
+            "reason": "Emma killed Steven because she couldn't stand his continuous attempts to overcome his fear of talking to women. She found his awkward advances and collection of 'How to Talk to Women' books irritating and disruptive to the party's atmosphere. Emma believed that by eliminating Steven, she could create a more enjoyable and less awkward environment for herself and the other guests.", 
+            "guiltyResponse1": "Emma looked annoyed, 'Steven kept coming up to me asking if there was something wrong with him as no one loved him, that's all I rememember from him.", 
+            "guiltyResponse2": "Emma shifts uncomfortably and mumbles, 'I can't believe this happened. Steven was, you know, a bit... strange...'",
+            "innocentResponse1": "Emma shifts uncomfortably and mumbles, 'I can't believe this happened. Steven was, you know, a bit... strange...'",
+            "innocentResponse2": "Emma looked annoyed, 'Steven kept coming up to me asking if there was something wrong with him as no one loved him, that's all I rememember from him.", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "jamal": {
+            "reason": "Emma killed Jamal because his constant arguing at the party reminded her of her children's incessant debates and disagreements at home. She wanted a break from it all, and Jamal's debating was a stark reminder of her everyday life, prompting her to eliminate him to escape the familiar turmoil.", 
+            "guiltyResponse1": "Emma looks concerned, 'How could someone do this to Jamal?'", 
+            "guiltyResponse2": "Emma shifts uncomfortably and mumbles, 'All I remember is him having shouting matches with Jay, his shouting reminded me of my kids at home... I can't stand shouting.'", 
+            "innocentResponse1":"Emma shifts uncomfortably and mumbles, 'All I remember is him having shouting matches with Jay, his shouting reminded me of my kids at home... I can't stand shouting.'", 
+            "innocentResponse2": "Emma pleads, 'I have no involvement in this at all.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "julian": {
+            "reason": "Emma killed Julian because he showed no interest in listening to her stories or looking at pictures of her children, which frustrated her. She came to the party seeking praise for her ability to master her demanding life as a single mother and had hoped for a sympathetic ear, but Julian's indifference to her experiences and her family made her snap.", 
+            "guiltyResponse1": "Emma looks annoyed, 'Julian didn't care when I showed him the 80 image slideshow of the first time my youngest learned how to use the toilet... what kind of man dosen't care about that?'", 
+            "guiltyResponse2": "Emma tries to hide a smile, 'I am so shocked that this happened to Julian, he was such a quiet guy.'", 
+            "innocentResponse1": "Emma looks annoyed, 'Julian didn't care when I showed him the 80 image slideshow of the first time my youngest learned how to use the toilet... what kind of man dosen't care about that?'", 
+            "innocentResponse2": "Emma avoids eye contact as she says, 'Who knows who could have done this.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "aria": {
+            "reason": "Emma killed aria because her relentless flirtations and pursuit of attention reminded Emma of the empty, fleeting romances she had experienced in the past. Seeing Aria's behaviour triggered feelings of bitterness and resentment, leading Emma to eliminate her.", 
+            "guiltyResponse1": "Emma says with a sour tone, 'Are we sure miss attention seeker isn't just faking it?'", 
+            "guiltyResponse2": "Emma, her voice tinged with bitterness, states, 'It was hard to be around someone like Aria, especially when her behavior reminds me of my past.'",
+            "innocentResponse1": "Emma, her voice tinged with bitterness, states, 'It was hard to be around someone like Aria, especially when her behavior reminds me of my past.'",
+            "innocentResponse2": "Emma says with a sour tone, 'Are we sure miss attention seeker isn't just faking it?'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        }
+    },
+    "aria": {
+        "gameEndWin": "You've successfully uncovered the truth. Aria's flirting techniques were not strong enough to seduce the inspector. You take her into custody.", 
+        "gameEndLoss": "You couldn't gather enough evidence to convict Aria. She skips down the driveway knowing she has regained her status as queen bee.", 
+        "jay": {
+            "reason": "Aria killed Jay as he embarrassed her by revealing an embarrassing secret from her high school days, tarnishing her reputation and causing her significant humiliation.", 
+            "guiltyResponse1": "Aria says with a bitter tone, 'I don't know what happened to Jay'", 
+            "guiltyResponse2": "Aria avoids making eye contact as she says, 'No I didn't mind Jay spilling high school secrets... I'm totally over that...'", 
+            "innocentResponse1": "Aria says with a bitter tone, 'I don't know what happened to Jay, but one thing I will say is that he needs to learn to keep his mouth shut.'", 
+            "innocentResponse2": "Aria shuffles nervously, 'He always used to think he was invincible... I guess not...'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "matt": {
+            "reason": "Aria eliminated Matt because his socially clueless antics and awkward behaviour disrupted her efforts to flirt and gain attention. Especially when Matt makes jokes about Aria having super STDs as a result of her antics scaring away someone she was interested in at the party.", 
+            "guiltyResponse1": "Aria shuffles nervously, 'He said what about me?... No I didn't know he said that I had super STDs, I wouldn't kill someone over... that'", 
+            "guiltyResponse2": "Aria appears confused, 'When did Matt die, I saw him not that long ago failing to act as cupid for me.'", 
+            "innocentResponse1": "Aria appears confused, 'When did Matt die, I saw him not that long ago failing to act as cupid for me.'", 
+            "innocentResponse2": "Aria looks upset, 'How could someone do this to poor Matt. He wouldn't hurt a fly.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "saint": {
+            "reason": "Aria decied to eliminate Saint as she noticed that Saint's innocent and charming presence was drawing admirers and stealing some of the limelight away from her.  In her pursuit of undivided attention, Aria saw Saint as a direct competitor, and this intense rivalry ultimately led her to take drastic action.", 
+            "guiltyResponse1": "Aria pleaded, 'No inspector, I didn't see anything.'", 
+            "guiltyResponse2": "Aria looking visibly annoyed, 'Why is everyone always talking about Saint, it's always Saint this Saint that.'", 
+            "innocentResponse1": "Aria pleaded, 'No inspector, I didn't see anything.'", 
+            "innocentResponse2": "Aria looks nervous as she says, 'I could never harm Saint, you have to believe me!'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "steven": {
+            "reason": "Aria decided to eliminate Steven due to his consistent habit of deflecting blame onto others for his inabilty to connect with women. He was displaying incel behaviour so Aria killed him.", 
+            "guiltyResponse1": "Aria appears anxious, 'He was creeping me and the other girls out all night, maybe it was one of them.'", 
+            "guiltyResponse2": "Aria trying to hide a smile said, 'Between you and me, I'm glad he is gone... he is... was... a bit of a werido wasn't he.'", 
+            "innocentResponse1": "Aria appears anxious, 'He was creeping me and the other girls out all night, maybe it was one of them.'", 
+            "innocentResponse2": "Aria sighed, 'Today was meant to be a night to relieve my high school days, not a session of cluedo.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "jamal": {
+            "reason": "Aria chose to eliminate Jamal because she was annoyed by his constant attempts to showcase his debating skills. Throughout the party, Jamal engaged in numerous debates and discussions, monopolizing the conversations with his competitive nature. Aria couldn't stand it any longer and had to take him out of the party.", 
+            "guiltyResponse1": "Aria pacing back and forth, 'Why would you think I killed Jamal, I could never.'", 
+            "guiltyResponse2": "Aria seemed firm, 'It was Julian, definitly Julian, something isn't right with him.'", 
+            "innocentResponse1":"Aria seemed firm, 'It was Julian, definitly Julian, something isn't right with him.'", 
+            "innocentResponse2": "Aria pacing back and forth, 'Why would you think I killed Jamal, I could never.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "julian": {
+            "reason": "Aria decided to eliminate Julian because she perceived him as a buzzkill, someone who failed to embrace the lively spirit of the party. Throughout the evening, Julian's reluctance to engage in fun and spontaneity had become increasingly evident to Aria, driving her to eliminate him from the party.", 
+            "guiltyResponse1": "Aria chuckled, 'Be honest, did anyone even notice he was missing?'", 
+            "guiltyResponse2": "Aria's eyes show panic, 'I have no idea what happened inspector.'", 
+            "innocentResponse1": "Aria's eyes show panic, 'I have no idea what happened inspector.'", 
+            "innocentResponse2": "Aria chuckled, 'Be honest, did anyone even notice he was missing?'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        },
+        "emma": {
+            "reason": "Aria decided to eliminate Emma because she felt threatened by Emma's assertiveness and success in her career. Emma's achievements and confidence made Aria question her own accomplishments, leading to jealousy and insecurity. Aria believed that by getting rid of Emma, she could reaffirm her own self-worth and regain a sense of superiority within the social circle.", 
+            "guiltyResponse1": "Aria fidgets nervously and mutters, 'She had so much going on for her, how could someone do this to her.'", 
+            "guiltyResponse2": "Aria maintains her composure and says, 'I had no involvement inspctor.'", 
+            "innocentResponse1": "Aria fidgets nervously and mutters, 'She had so much going on for her, how could someone do this to her.'", 
+            "innocentResponse2": "Aria maintains her composure and says, 'I had no involvement inspctor.'", 
+            "clue1": "Searching the area you find a torn piece of a dress.", 
+            "clue2": "Searching the area you see high heel blood footprints leaving the area walking towards the garden."
+        }
+    }
+}

@@ -1,6 +1,7 @@
 const express = require('express');
 const readline = require('readline');
 const expressWs = require('express-ws');
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -13,6 +14,17 @@ class Room {
         this.description = description;
         this.exits = exits;
         this.puzzle = null;
+        this.characters = [];
+    }
+
+    addChar(char) {
+        if (this.characters.length < 2) {
+            this.characters.push(char);
+            char.currentRoom = this;
+        }
+
+        //DONT FORGET TO REMOVE PLS
+        console.log(`Char: ${char.name} has been added to ${this.name}`);
     }
 }
 
@@ -29,9 +41,44 @@ class Player {
 
     // returns the room description of the current room
     getRoomInfo() {
-        return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')}`;
+        return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters nearby: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
     }
 }
+
+class Character {
+    constructor(name, isMurderer, isVictim, characterData) {
+        this.name = name;
+        this.isMurderer = isMurderer;
+        this.isVictim = isVictim;
+        this.characterData = characterData;
+        this.currentRoom = null;
+    }
+
+    assignResponses(victim, murderer){
+        this.gameEndWin = this.characterData["gameEndWin"];
+        this.gameEndLoss = this.characterData["gameEndLoss"];
+
+        // console.log(gameEndWin);
+        // console.log(gameEndLoss);
+
+        // console.log(murderer.name);
+        // console.log(this.name);
+
+        // console.log(victim.name.toLowerCase());
+
+        if (this.name.toLowerCase() == murderer.name.toLowerCase()){
+            this.reason = this.characterData[victim.name.toLowerCase()]['reason'];
+            this.response1 = this.characterData[victim.name.toLowerCase()]['guiltyResponse1'];
+            this.response2 = this.characterData[victim.name.toLowerCase()]['guiltyResponse2'];
+            this.clue1 = this.characterData[victim.name.toLowerCase()]['clue1'];
+            this.clue2 = this.characterData[victim.name.toLowerCase()]['clue2'];
+        }else {
+            this.response1 = this.characterData[victim.name.toLowerCase()]['innocentResponse1'];
+            this.response2 = this.characterData[victim.name.toLowerCase()]['innocentResponse2'];
+        } 
+    }  
+}
+
 
 // super class for puzzle
 class Puzzle {
@@ -124,7 +171,7 @@ class MathPuzzle extends Puzzle {
 class CaesarCipherPuzzle extends Puzzle {
     constructor() {
         const texts = ["detective", "secret", "clue", "evidence", "the garden outside is overgrown hiding secrets", "the dining room is set for a meal that never happened",
-         "the suspects are gathering in the living room", "a broken pool cue is resting on the table in the games room"];
+            "the suspects are gathering in the living room", "a broken pool cue is resting on the table in the games room"];
 
         const randomIndex = Math.floor(Math.random() * texts.length);
         const text = texts[randomIndex];
@@ -145,7 +192,7 @@ class CaesarCipherPuzzle extends Puzzle {
                 if (chanceToEncrypt) {
                     const charCode = char.charCodeAt(0);
                     const shiftedCharCode = ((charCode - 97 + shift) % 26) + 97;
-                    
+
                     encrypted += String.fromCharCode(shiftedCharCode);
                 } else {
                     encrypted += char.toUpperCase();
@@ -178,6 +225,61 @@ class Game {
             'courtyard': new Room('Courtyard', 'You are in the courtyard. There are exits to the north, east, west and south.', { north: 'kitchen', west: 'garden', south: 'bedroom', east: 'dining_room' })
         }
 
+        // creates characters, randomly picks murder and victim
+        const charactersData = loadCharData();
+        let jay, matt, saint, steven, jamal, julian, emma, aria;
+        const listOfChars = [
+            jay = new Character('Jay', false, false, charactersData['jay']),
+            matt = new Character('Matt', false, false, charactersData['matt']),
+            saint = new Character('Saint', false, false, charactersData['saint']),
+            steven = new Character('Steven', false, false, charactersData['steven']),
+            jamal = new Character('Jamal', false, false, charactersData['jamal']),
+            julian = new Character('Julian', false, false, charactersData['julian']),
+            emma = new Character('Emma', false, false, charactersData['emma']),
+            aria = new Character('Aria', false, false, charactersData['aria'])
+        ];
+
+        // console.log(listOfChars)
+
+        this.addCharToRoom(listOfChars)
+
+        // randomly selects murderer and victim 
+        const randomVictimIndex = Math.floor(Math.random() * listOfChars.length);
+        let randomMurdererIndex;
+        do {
+            randomMurdererIndex = Math.floor(Math.random() * listOfChars.length);
+        } while (randomVictimIndex == randomMurdererIndex);
+
+        const victim = listOfChars[randomVictimIndex];
+        const murderer = listOfChars[randomMurdererIndex];
+
+        victim.isVictim = true;
+        murderer.isMurderer = true;
+
+        // console.log(`Victim is: ${victim.name}`);
+        // console.log(`Murderer is: ${murderer.name}`);
+
+        // ///// testing 
+        // jay.assignResponses(victim, murderer);
+        // // console.log(jay.reason);
+        // console.log(jay.gameEndLoss);
+        // console.log(jay.gameEndWin);
+
+        // console.log(jay.response1);
+        // console.log(jay.response2);
+        // // console.log(jay.clue1);
+        // // console.log(jay.clue2);
+
+
+
+
+
+
+
+        // randomly select murder weapon
+        const listOfWeapons = [];
+        const murderWeapon = Math.floor(Math.random() * listOfWeapons.length) 
+
         // creates player and starting room
         this.player = new Player();
         this.player.moveToRoom(this.rooms['courtyard']);
@@ -200,6 +302,18 @@ class Game {
 
         this.setUp();
     }
+
+
+    // function to add a character to a room randomly.
+    addCharToRoom(listOfChars) {
+        const roomsList = Object.values(this.rooms);
+        roomsList.sort(() => Math.random() - 0.5);
+        for (let i = 0; i < listOfChars.length;i++){
+            const room = roomsList[i % roomsList.length];
+            room.addChar(listOfChars[i]);
+        }
+    }
+
 
     setUp() {
         // initialise websocket server
@@ -252,7 +366,7 @@ class Game {
             //ws.send(this.player.getRoomInfo());
 
         } else {
-             const command = input.split(' ')[0];
+            const command = input.split(' ')[0];
             // execute command
             switch (command) {
                 case 'go':
@@ -300,7 +414,7 @@ class Game {
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
-                    ws.send('"go x : add direction to command to move to a room');
+                    ws.send('"go : add direction to command to move to a room');
                     ws.send('"description" : gives current room description');
                     ws.send('"map" : displays map');
                     ws.send('"search" : searches the current room you are in')
@@ -337,8 +451,16 @@ class Game {
                     ws.send(' ');
             }
         }
+    }
+}
 
-
+function loadCharData() {
+    try {
+        const data = fs.readFileSync('characterData.json', 'utf-8');
+        return JSON.parse(data);
+    } catch (err) {
+        console.error(`Error loading character data: ${err}`);
+        return {};
     }
 }
 
