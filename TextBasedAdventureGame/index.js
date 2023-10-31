@@ -53,6 +53,30 @@ class Character {
         this.characterData = characterData;
         this.currentRoom = null;
     }
+
+    assignResponses(victim, murderer){
+        this.gameEndWin = this.characterData["gameEndWin"];
+        this.gameEndLoss = this.characterData["gameEndLoss"];
+
+        // console.log(gameEndWin);
+        // console.log(gameEndLoss);
+
+        // console.log(murderer.name);
+        // console.log(this.name);
+
+        // console.log(victim.name.toLowerCase());
+
+        if (this.name.toLowerCase() == murderer.name.toLowerCase()){
+            this.reason = this.characterData[victim.name.toLowerCase()]['reason'];
+            this.response1 = this.characterData[victim.name.toLowerCase()]['guiltyResponse1'];
+            this.response2 = this.characterData[victim.name.toLowerCase()]['guiltyResponse2'];
+            this.clue1 = this.characterData[victim.name.toLowerCase()]['clue1'];
+            this.clue2 = this.characterData[victim.name.toLowerCase()]['clue2'];
+        }else {
+            this.response1 = this.characterData[victim.name.toLowerCase()]['innocentResponse1'];
+            this.response2 = this.characterData[victim.name.toLowerCase()]['innocentResponse2'];
+        } 
+    }  
 }
 
 
@@ -229,8 +253,28 @@ class Game {
         const victim = listOfChars[randomVictimIndex];
         const murderer = listOfChars[randomMurdererIndex];
 
-        console.log(`Victim is: ${victim.name}`);
-        console.log(`Murderer is: ${murderer.name}`);
+        victim.isVictim = true;
+        murderer.isMurderer = true;
+
+        // console.log(`Victim is: ${victim.name}`);
+        // console.log(`Murderer is: ${murderer.name}`);
+
+        // ///// testing 
+        // jay.assignResponses(victim, murderer);
+        // // console.log(jay.reason);
+        // console.log(jay.gameEndLoss);
+        // console.log(jay.gameEndWin);
+
+        // console.log(jay.response1);
+        // console.log(jay.response2);
+        // // console.log(jay.clue1);
+        // // console.log(jay.clue2);
+
+
+
+
+
+
 
         // randomly select murder weapon
         const listOfWeapons = [];
