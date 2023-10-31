@@ -52,32 +52,45 @@ class Character {
         this.isVictim = isVictim;
         this.characterData = characterData;
         this.currentRoom = null;
+
+        this.response1 = "";
+        this.response2 = "";
+        this.clue1 = "";
+        this.clue2 = "";
+        this.reason = "";
     }
 
-    assignResponses(victim, murderer){
+    assignResponses(victim, murderer) {
+
         this.gameEndWin = this.characterData["gameEndWin"];
         this.gameEndLoss = this.characterData["gameEndLoss"];
 
-        // console.log(gameEndWin);
-        // console.log(gameEndLoss);
+        if (!(victim == this.name.toLowerCase())) {
+            if (this.murderer) {
+                this.reason = this.characterData[victim]['reason'];
+                this.response1 = this.characterData[victim]['guiltyResponse1'];
+                this.response2 = this.characterData[victim]['guiltyResponse2'];
+                this.clue1 = this.characterData[victim]['clue1'];
+                this.clue2 = this.characterData[victim]['clue2'];
+            } else {
+                this.response1 = this.characterData[victim]['innocentResponse1'];
+                this.response2 = this.characterData[victim]['innocentResponse2'];
+            }
+        }
 
-        // console.log(murderer.name);
-        // console.log(this.name);
+        console.log(" ");
+        console.log(this.name);
+        console.log(murderer);
+        console.log(victim);
+        console.log(this.response1);
+        console.log(this.response2);
 
-        // console.log(victim.name.toLowerCase());
 
-        if (this.name.toLowerCase() == murderer.name.toLowerCase()){
-            this.reason = this.characterData[victim.name.toLowerCase()]['reason'];
-            this.response1 = this.characterData[victim.name.toLowerCase()]['guiltyResponse1'];
-            this.response2 = this.characterData[victim.name.toLowerCase()]['guiltyResponse2'];
-            this.clue1 = this.characterData[victim.name.toLowerCase()]['clue1'];
-            this.clue2 = this.characterData[victim.name.toLowerCase()]['clue2'];
-        }else {
-            this.response1 = this.characterData[victim.name.toLowerCase()]['innocentResponse1'];
-            this.response2 = this.characterData[victim.name.toLowerCase()]['innocentResponse2'];
-        } 
-    }  
+
+
+    }
 }
+
 
 
 // super class for puzzle
@@ -121,8 +134,8 @@ class AnagramPuzzle extends Puzzle {
         const shuffledWord = shuffled.join('');
 
         // debugging stuff 
-        console.log(`shuffled word ${shuffledWord}`);
-        console.log(`original word ${randomWord}`);
+        // console.log(`shuffled word ${shuffledWord}`);
+        // console.log(`original word ${randomWord}`);
         // DONT FORGET TO REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
@@ -161,7 +174,7 @@ class MathPuzzle extends Puzzle {
             }
         } while (answer == undefined);
 
-        console.log(`maths answer ${answer}`);
+        // console.log(`maths answer ${answer}`);
 
         super(`Solve this problem:  ${question}`, answer.toString());
     }
@@ -203,9 +216,9 @@ class CaesarCipherPuzzle extends Puzzle {
         super(`Decrypt this Caesar Cipher text (random shift from 1-25 applied. Uppercase letters are unencrypted): ${encrypted}`, text);
 
         //debuging stuff - DONT FORGET TO REMOVE LATER 
-        console.log(`original text ${text}`);
-        console.log(`encrypted text ${encrypted}`);
-        console.log(`cipher shift ${shift}`);
+        // console.log(`original text ${text}`);
+        // console.log(`encrypted text ${encrypted}`);
+        // console.log(`cipher shift ${shift}`);
     }
 }
 
@@ -256,19 +269,17 @@ class Game {
         victim.isVictim = true;
         murderer.isMurderer = true;
 
-        // console.log(`Victim is: ${victim.name}`);
-        // console.log(`Murderer is: ${murderer.name}`);
+        console.log(`Victim is: ${victim.name}`);
+        console.log(`Murderer is: ${murderer.name}`);
 
-        // ///// testing 
-        // jay.assignResponses(victim, murderer);
-        // // console.log(jay.reason);
-        // console.log(jay.gameEndLoss);
-        // console.log(jay.gameEndWin);
-
-        // console.log(jay.response1);
-        // console.log(jay.response2);
-        // // console.log(jay.clue1);
-        // // console.log(jay.clue2);
+        jay.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        matt.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        saint.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        steven.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        jamal.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        julian.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        emma.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
+        aria.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
 
 
 
@@ -278,7 +289,7 @@ class Game {
 
         // randomly select murder weapon
         const listOfWeapons = [];
-        const murderWeapon = Math.floor(Math.random() * listOfWeapons.length) 
+        const murderWeapon = Math.floor(Math.random() * listOfWeapons.length)
 
         // creates player and starting room
         this.player = new Player();
@@ -297,7 +308,7 @@ class Game {
             this.rooms[listOfRooms[i]].puzzle = puzzles[i];
 
             //debugging
-            console.log(listOfRooms[i]);
+            // console.log(listOfRooms[i]);
         }
 
         this.setUp();
@@ -308,7 +319,7 @@ class Game {
     addCharToRoom(listOfChars) {
         const roomsList = Object.values(this.rooms);
         roomsList.sort(() => Math.random() - 0.5);
-        for (let i = 0; i < listOfChars.length;i++){
+        for (let i = 0; i < listOfChars.length; i++) {
             const room = roomsList[i % roomsList.length];
             room.addChar(listOfChars[i]);
         }
