@@ -255,6 +255,8 @@ class Game {
             aria = new Character('Aria', false, false, charactersData['aria'])
         ];
 
+        this.murderer = null;
+
         // console.log(listOfChars)
 
         this.addCharToRoom(listOfChars)
@@ -271,6 +273,8 @@ class Game {
 
         victim.isVictim = true;
         murderer.isMurderer = true;
+
+        this.murderer = murderer;
 
         console.log(`Victim is: ${victim.name}`);
         console.log(`Murderer is: ${murderer.name}`);
@@ -359,6 +363,13 @@ class Game {
     }
 
     async handleInput(input, ws) {
+
+        let gameEnded = false;
+        
+        if(this.gameEnded){
+            return;
+        }
+
         ws.send(" ");
         ws.send(input);
         ws.send(" ");
@@ -457,6 +468,27 @@ class Game {
                         ws.send('You forgot to say who you are questioning.')
                     }
                     break;
+                case 'accuse':
+                    const char = input.split(' ')[1];
+                    if (char){
+                        ws.send(' ');
+                        const character = this.player.currentRoom.characters.find(c => c.name.toLowerCase() === char.toLowerCase());
+                        if (character){
+                            if (character.isMurderer){
+                                
+                                ws.send(this.murderer.gameEndWin);
+                                this.gameEnded = true;
+                            }else{
+                                ws.send(this.murderer.gameEndLoss);
+                                this.gameEnded = true;
+                            }
+                        }else {
+                            ws.send('No character with that name is at the party.')
+                        }
+                    }else {
+                        ws.send('You forgot to say who you are accusing.')
+                    }
+                    break;
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
@@ -491,7 +523,7 @@ class Game {
                     ws.send(' ');
                     ws.send('Goodbye');
                     ws.send(' ');
-                    break;
+                    this.gameEnded = true;
                 default:
                     ws.send(' ');
                     ws.send('Invalid command');
