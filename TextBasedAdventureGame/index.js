@@ -53,6 +53,8 @@ class Character {
         this.characterData = characterData;
         this.currentRoom = null;
 
+        this.questionedNumber = 0;
+
         this.response1 = "";
         this.response2 = "";
         this.clue1 = "";
@@ -283,19 +285,15 @@ class Game {
         emma.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
         aria.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
 
-        
+
         // randomly select murder weapon
-        const listOfWeapons = ['kitchen knife', 'candlestick', 'poisoned drink', 'poisoned food', 'crowbar', 'rope', 'letter opener', ' trophy', 'fire poker', 'pool cue', 
-        'broken bottle'];
+        const listOfWeapons = ['kitchen knife', 'candlestick', 'poisoned drink', 'poisoned food', 'crowbar', 'rope', 'letter opener', ' trophy', 'fire poker', 'pool cue',
+            'broken bottle'];
         const murderWeapon = listOfWeapons[Math.floor(Math.random() * listOfWeapons.length)];
 
         // list of available clues 
         const clues = [murderer.clue1, murderer.clue2, murderWeapon];
         // console.log(clues);
-
-
-
-
 
         // creates player and starting room
         this.player = new Player();
@@ -428,14 +426,46 @@ class Game {
                         ws.send(' ');
                     }
                     break;
+                case 'question':
+                    const characterName = input.split(' ')[1];
+                    if (characterName) {
+                        ws.send(' ');
+                        const character = this.player.currentRoom.characters.find(char => char.name.toLowerCase() === characterName.toLowerCase());
+                        if (character) {
+                            if (character.isVictim) {
+                                ws.send('Dead people cant speak.')
+                            } else {
+                                if (character.questionedNumber < 2) {
+                                    ws.send(`You ask ${character.name} a question.`);
+                                    ws.send(' ');
+                                    if (character.questionedNumber == 0) {
+                                        ws.send(character.response1)
+                                    } else {
+                                        ws.send(character.response2);
+                                    }
+                                    ws.send(' ');
+                                    character.questionedNumber++;
+                                } else {
+                                    ws.send('I have nothing else to say.');
+                                    ws.send(' ');
+                                }
+                            }
+                        } else {
+                            ws.send('No character with that name is in the room.')
+                        }
+                    } else {
+                        ws.send('You forgot to say who you are questioning.')
+                    }
+                    break;
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
-                    ws.send('"go : add direction to command to move to a room');
+                    ws.send('"go <diretion> : move to a room');
                     ws.send('"description" : gives current room description');
                     ws.send('"map" : displays map');
                     ws.send('"search" : searches the current room you are in')
                     ws.send('"solve" : solves the puzzle in the current room')
+                    ws.send('"question <character name> : questions character in room')
                     ws.send('"quit" : exits game');
                     ws.send(' ');
                     break;
