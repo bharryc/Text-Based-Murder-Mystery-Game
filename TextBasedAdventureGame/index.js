@@ -24,7 +24,7 @@ class Room {
         }
 
         //DONT FORGET TO REMOVE PLS
-        console.log(`Char: ${char.name} has been added to ${this.name}`);
+        // console.log(`Char: ${char.name} has been added to ${this.name}`);
     }
 }
 
@@ -44,7 +44,7 @@ class Player {
         return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters nearby: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
     }
 }
-
+// class for character 
 class Character {
     constructor(name, isMurderer, isVictim, characterData) {
         this.name = name;
@@ -60,13 +60,14 @@ class Character {
         this.reason = "";
     }
 
+    // assigns the responses based on if the charcater is a murderer or not and who has died, reads from the json file.
     assignResponses(victim, murderer) {
 
         this.gameEndWin = this.characterData["gameEndWin"];
         this.gameEndLoss = this.characterData["gameEndLoss"];
 
-        if (!(victim == this.name.toLowerCase())) {
-            if (this.murderer) {
+        if (!this.isVictim) {
+            if (this.isMurderer) {
                 this.reason = this.characterData[victim]['reason'];
                 this.response1 = this.characterData[victim]['guiltyResponse1'];
                 this.response2 = this.characterData[victim]['guiltyResponse2'];
@@ -78,15 +79,15 @@ class Character {
             }
         }
 
-        console.log(" ");
-        console.log(this.name);
-        console.log(murderer);
-        console.log(victim);
-        console.log(this.response1);
-        console.log(this.response2);
-
-
-
+        //DON'T FOREGT TO REMOVE PLS :)
+        // console.log(" ");
+        // console.log(this.name);
+        // console.log(murderer);
+        // console.log(victim);
+        // console.log(this.response1);
+        // console.log(this.response2);
+        // console.log(this.clue1);
+        // console.log(this.clue2);
 
     }
 }
@@ -272,6 +273,7 @@ class Game {
         console.log(`Victim is: ${victim.name}`);
         console.log(`Murderer is: ${murderer.name}`);
 
+        // calls the method to assign the responses
         jay.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
         matt.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
         saint.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
@@ -281,15 +283,19 @@ class Game {
         emma.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
         aria.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
 
-
-
-
-
-
-
+        
         // randomly select murder weapon
-        const listOfWeapons = [];
-        const murderWeapon = Math.floor(Math.random() * listOfWeapons.length)
+        const listOfWeapons = ['kitchen knife', 'candlestick', 'poisoned drink', 'poisoned food', 'crowbar', 'rope', 'letter opener', ' trophy', 'fire poker', 'pool cue', 
+        'broken bottle'];
+        const murderWeapon = listOfWeapons[Math.floor(Math.random() * listOfWeapons.length)];
+
+        // list of available clues 
+        const clues = [murderer.clue1, murderer.clue2, murderWeapon];
+        // console.log(clues);
+
+
+
+
 
         // creates player and starting room
         this.player = new Player();
@@ -465,6 +471,7 @@ class Game {
     }
 }
 
+// reads the json file to be used in the game.
 function loadCharData() {
     try {
         const data = fs.readFileSync('characterData.json', 'utf-8');
