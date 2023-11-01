@@ -422,6 +422,7 @@ class Game {
             const command = input.split(' ')[0];
             // execute command
             switch (command) {
+                // go command, updates players current room val to the new room if command is valid
                 case 'go':
                     const direction = input.split(' ')[1];
                     if (this.player.currentRoom.exits[direction]) {
@@ -435,11 +436,13 @@ class Game {
                         ws.send(' ');
                     }
                     break;
+                    // description gets the description of the current room the player is in
                 case 'description':
                     ws.send(' ');
                     ws.send(this.player.getRoomInfo());
                     ws.send(' ');
                     break;
+                    // searches the room to see if there is a puzzle
                 case 'search':
                     if (this.player.currentRoom.puzzle) {
                         ws.send(' ');
@@ -451,6 +454,7 @@ class Game {
                         ws.send(' ');
                     }
                     break;
+                    // solves the puzzle in current room
                 case 'solve':
                     if (this.player.currentRoom.puzzle) {
                         ws.send(' ');
@@ -464,6 +468,8 @@ class Game {
                         ws.send(' ');
                     }
                     break;
+                    // questions suspect, will check to see if char exists and is in current room
+                    // will return 2 responses
                 case 'question':
                     const characterName = input.split(' ')[1];
                     if (characterName) {
@@ -495,6 +501,8 @@ class Game {
                         ws.send('You forgot to say who you are questioning.')
                     }
                     break;
+                    // accuse suspect, checks to see if char is in game
+                    // if correct game ends, if incorrect game ends
                 case 'accuse':
                     const char = input.split(' ')[1];
                     if (char){
@@ -515,6 +523,7 @@ class Game {
                         ws.send('You forgot to say who you are accusing.')
                     }
                     break;
+                    // lists all commands
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
@@ -524,9 +533,11 @@ class Game {
                     ws.send('"search" : searches the current room you are in')
                     ws.send('"solve" : solves the puzzle in the current room')
                     ws.send('"question <character name> : questions character in room')
+                    ws.send('"accuse <characer name> : accuse suspect of crime')
                     ws.send('"quit" : exits game');
                     ws.send(' ');
                     break;
+                    // displays basic map 
                 case 'map':
                     ws.send(' ');
                     ws.send('*-------------*-------------*-------------*');
@@ -545,6 +556,7 @@ class Game {
                     ws.send(` You are in the ${this.player.currentRoom.name}`);
                     ws.send(' ');
                     break;
+                    // quits game
                 case 'quit':
                     ws.send(' ');
                     ws.send('Goodbye');
