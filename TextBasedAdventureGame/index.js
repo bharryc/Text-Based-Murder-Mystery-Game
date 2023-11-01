@@ -360,7 +360,7 @@ class Game {
             });
 
             // welcome message
-            ws.send('Welcome to the text adventure game');
+            ws.send('Welcome to Who Did It Tho 2');
             ws.send('Type commands in to navigate.')
             ws.send('Type "help" for a list of commands');
             ws.send('Type "quit" to exit the game');
@@ -411,7 +411,7 @@ class Game {
                 ws.send(' ');
             } else {
                 ws.send(' ');
-                ws.send('Incorrect... the device breaks in your hand');
+                ws.send('Incorrect...');
                 ws.send(' ');
             }
 
@@ -443,7 +443,7 @@ class Game {
                 case 'search':
                     if (this.player.currentRoom.puzzle) {
                         ws.send(' ');
-                        ws.send('There seems to be something here to solve');
+                        ws.send('There seems to be something here for you to investigate...');
                         ws.send(' ');
                     } else {
                         ws.send(' ');
@@ -454,7 +454,7 @@ class Game {
                 case 'solve':
                     if (this.player.currentRoom.puzzle) {
                         ws.send(' ');
-                        ws.send('You find a strange device and start investigating it...');
+                        ws.send('You see something but can\'t quite make it out... Solve this puzzle to uncover.');
                         ws.send(this.player.currentRoom.puzzle.getInstructions());
                         this.player.currentRoom.puzzle.isSolving = true;
                         ws.send('Please enter your answer:');
