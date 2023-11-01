@@ -279,6 +279,7 @@ class Game {
         murderer.isMurderer = true;
 
         this.murderer = murderer;
+        this.victim = victim;
 
         console.log(`Victim is: ${victim.name}`);
         console.log(`Murderer is: ${murderer.name}`);
@@ -346,6 +347,11 @@ class Game {
 
 
     setUp() {
+
+        const suspects = this.characterList.filter(character => !character.isVictim).map(character => character.name);
+        const firstSuspects = suspects.slice(0, -1).join(', ');
+        const finalSuspect = suspects[suspects.length -1];
+
         // initialise websocket server
         app.ws('/index', (ws, req) => {
             ws.on('message', async (userInput) => {
@@ -360,6 +366,13 @@ class Game {
             ws.send('Type "quit" to exit the game');
             ws.send(' ');
             ws.send('--------------------------------------');
+            ws.send(' ');
+            ws.send('You are detective that has been called to a large estate in the British countryside.');
+            ws.send(`Upon arrival you have found ${this.victim.name} dead in the ${this.victim.currentRoom.name}`);
+            ws.send('You have narrowed down your suspects down to these people: ');
+            ws.send(`${firstSuspects} and ${finalSuspect}`);
+            ws.send(`Your job is to uncover the truth and figure out what happened to ${this.victim.name}`);
+            ws.send(' ');
             ws.send(' ');
             ws.send(this.player.getRoomInfo());
         });
