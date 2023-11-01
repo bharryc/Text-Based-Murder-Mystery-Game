@@ -138,7 +138,7 @@ class AnagramPuzzle extends Puzzle {
 
         // debugging stuff 
         // console.log(`shuffled word ${shuffledWord}`);
-        // console.log(`original word ${randomWord}`);
+        console.log(`original word ${randomWord}`);
         // DONT FORGET TO REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
@@ -177,7 +177,7 @@ class MathPuzzle extends Puzzle {
             }
         } while (answer == undefined);
 
-        // console.log(`maths answer ${answer}`);
+        console.log(`maths answer ${answer}`);
 
         super(`Solve this problem:  ${question}`, answer.toString());
     }
@@ -219,7 +219,7 @@ class CaesarCipherPuzzle extends Puzzle {
         super(`Decrypt this Caesar Cipher text (random shift from 1-25 applied. Uppercase letters are unencrypted): ${encrypted}`, text);
 
         //debuging stuff - DONT FORGET TO REMOVE LATER 
-        // console.log(`original text ${text}`);
+        console.log(`original text ${text}`);
         // console.log(`encrypted text ${encrypted}`);
         // console.log(`cipher shift ${shift}`);
     }
@@ -228,6 +228,8 @@ class CaesarCipherPuzzle extends Puzzle {
 // class for game
 class Game {
     constructor() {
+
+        this.characterList = null;
         // list of rooms in the game
         this.rooms = {
             'garage': new Room('Garage', 'You are in the garage. There are exits to the east and south.', { east: 'kitchen', south: 'garden' }),
@@ -255,7 +257,9 @@ class Game {
             aria = new Character('Aria', false, false, charactersData['aria'])
         ];
 
+        this.characterList = listOfChars;
         this.murderer = null;
+        this.clues = null;
 
         // console.log(listOfChars)
 
@@ -294,9 +298,16 @@ class Game {
         const listOfWeapons = ['kitchen knife', 'candlestick', 'poisoned drink', 'poisoned food', 'crowbar', 'rope', 'letter opener', ' trophy', 'fire poker', 'pool cue',
             'broken bottle'];
         const murderWeapon = listOfWeapons[Math.floor(Math.random() * listOfWeapons.length)];
+        let weaponStr = "";
+        if (murderWeapon == 'poisoned drink' || 'poisoned food'){
+           weaponStr = `Looking around the area you find a poison bottle that has been used to kill ${victim.name}`;
+        }else {
+            weaponStr = `Looking around the area you find a bloody ${murderWeapon} that was used to kill ${victim.name}`;
+        }
 
         // list of available clues 
-        const clues = [murderer.clue1, murderer.clue2, murderWeapon];
+        const clues = [murderer.clue1, murderer.clue2, weaponStr];
+        this.clues = clues;
         // console.log(clues);
 
         // creates player and starting room
@@ -316,7 +327,7 @@ class Game {
             this.rooms[listOfRooms[i]].puzzle = puzzles[i];
 
             //debugging
-            // console.log(listOfRooms[i]);
+            console.log(listOfRooms[i]);
         }
 
         this.setUp();
@@ -380,7 +391,10 @@ class Game {
             const playerAnswer = input;
             if (this.player.currentRoom.puzzle.isSolved(playerAnswer)) {
                 ws.send(' ');
-                ws.send('Correct... the device reveals....');
+                if (this.clues.length > 0){
+                    const clue = this.clues.pop();
+                    ws.send(clue);
+                }
                 ws.send(' ');
             } else {
                 ws.send(' ');
@@ -472,10 +486,9 @@ class Game {
                     const char = input.split(' ')[1];
                     if (char){
                         ws.send(' ');
-                        const character = this.player.currentRoom.characters.find(c => c.name.toLowerCase() === char.toLowerCase());
+                        const character = this.characterList.find(c => c.name.toLowerCase() === char.toLowerCase());
                         if (character){
                             if (character.isMurderer){
-                                
                                 ws.send(this.murderer.gameEndWin);
                                 this.gameEnded = true;
                             }else{
