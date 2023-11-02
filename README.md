@@ -16,7 +16,7 @@ You will need:
 * Express-ws
 
 ### Executing program
-* Node .\index.js and then open the index.html file.
+* Node .\index.js and then go to localhost:8080
 
 ## Authors
 Cyrus Bharry
