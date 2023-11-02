@@ -232,15 +232,15 @@ class Game {
         this.characterList = null;
         // list of rooms in the game
         this.rooms = {
-            'garage': new Room('Garage', 'You are in the garage. There are exits to the east and south.', { east: 'kitchen', south: 'garden' }),
-            'kitchen': new Room('Kitchen', 'You are in the kitchen. There are exits to the west, east and south.', { east: 'games_room', west: 'garage', south: 'courtyard' }),
-            'games_room': new Room('Games Room', 'You are in the games room. There are exits to the west and south.', { west: 'kitchen', south: 'dining_room' }),
-            'dining_room': new Room('Dining Room', 'You are in the dining room. There are exits to the north, west and south.', { north: 'games_room', west: 'courtyard', south: 'living_room' }),
-            'living_room': new Room('Living Room', 'You are in the living room. There are exits to the north and west.', { north: 'dining_room', west: 'bedroom' }),
-            'bedroom': new Room('Bedroom', 'You are in the bedroom. There are exits to the north, west and east.', { north: 'courtyard', west: 'bathroom', east: 'living_room' }),
-            'garden': new Room('Garden', 'You are in the garden. There are exits to the north, east and south.', { north: 'garage', east: 'courtyard', south: 'bathroom' }),
-            'bathroom': new Room('Bathroom', 'You are in the bathroom. There are exits to the north, east.', { north: 'garden', east: 'bedroom' }),
-            'courtyard': new Room('Courtyard', 'You are in the courtyard. There are exits to the north, east, west and south.', { north: 'kitchen', west: 'garden', south: 'bedroom', east: 'dining_room' })
+            'garage': new Room('Garage', 'You are in the dimly lit garage, cluttered with tools and car parts. There are exits to the east and south.', { east: 'kitchen', south: 'garden' }),
+            'kitchen': new Room('Kitchen', 'You find yourself in the spacious, rustic kitchen with the aroma of a freshly baked pie in the air. There are exits to the west, east, and south.', { east: 'games_room', west: 'garage', south: 'courtyard' }),
+            'games_room': new Room('Games Room', 'You step into the games room, where a billiards table and darts board await players. There are exits to the west and south.', { west: 'kitchen', south: 'dining_room' }),
+            'dining_room': new Room('Dining Room', 'You enter the grand dining room, complete with a long oak table set for a lavish feast that never took place. There are exits to the north, west, and south.', { north: 'games_room', west: 'courtyard', south: 'living_room' }),
+            'living_room': new Room('Living Room', 'You find yourself in the cozy living room, adorned with plush furniture and a warm fireplace. There are exits to the north and west.', { north: 'dining_room', west: 'bedroom' }),
+            'bedroom': new Room('Bedroom', 'You are in the bedroom, where a four-poster bed stands as the centerpiece. There are exits to the north, west, and east.', { north: 'courtyard', west: 'bathroom', east: 'living_room' }),
+            'garden': new Room('Garden', 'You step into the lush garden, where overgrown plants and hidden secrets surround you. There are exits to the north, east, and south.', { north: 'garage', east: 'courtyard', south: 'bathroom' }),
+            'bathroom': new Room('Bathroom', 'You are in the elegant bathroom, complete with a clawfoot bathtub and marble fixtures. There are exits to the north and east.', { north: 'garden', east: 'bedroom' }),
+            'courtyard': new Room('Courtyard', 'You find yourself in the central courtyard, a hub connecting various parts of the manor. There are exits to the north, east, west, and south.', { north: 'kitchen', west: 'garden', south: 'bedroom', east: 'dining_room' })
         }
 
         // creates characters, randomly picks murder and victim
