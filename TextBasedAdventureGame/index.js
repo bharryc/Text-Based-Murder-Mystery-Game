@@ -17,12 +17,12 @@ class Room {
         this.characters = [];
     }
 
+    // assigns character to room 
     addChar(char) {
         if (this.characters.length < 2) {
             this.characters.push(char);
             char.currentRoom = this;
         }
-
         //DONT FORGET TO REMOVE PLS
         // console.log(`Char: ${char.name} has been added to ${this.name}`);
     }
@@ -44,6 +44,7 @@ class Player {
         return `${this.currentRoom.description}\nExits: ${Object.keys(this.currentRoom.exits).join(', ')} \nCharacters nearby: ${this.currentRoom.characters.map(char => char.name).join(',')}`;
     }
 }
+
 // class for character 
 class Character {
     constructor(name, isMurderer, isVictim, characterData) {
@@ -67,32 +68,25 @@ class Character {
     // assigns the responses based on if the charcater is a murderer or not and who has died, reads from the json file.
     assignResponses(victim, murderer) {
 
+        // end game responses 
         this.gameEndWin = this.characterData["gameEndWin"];
         this.gameEndLoss = this.characterData["gameEndLoss"];
 
+        // if they are the victim they won't have any responses 
         if (!this.isVictim) {
             if (this.isMurderer) {
+                // guilty responses set
                 this.reason = this.characterData[victim]['reason'];
                 this.response1 = this.characterData[victim]['guiltyResponse1'];
                 this.response2 = this.characterData[victim]['guiltyResponse2'];
                 this.clue1 = this.characterData[victim]['clue1'];
                 this.clue2 = this.characterData[victim]['clue2'];
             } else {
+                // innocent responses set 
                 this.response1 = this.characterData[victim]['innocentResponse1'];
                 this.response2 = this.characterData[victim]['innocentResponse2'];
             }
         }
-
-        //DON'T FOREGT TO REMOVE PLS :)
-        // console.log(" ");
-        // console.log(this.name);
-        // console.log(murderer);
-        // console.log(victim);
-        // console.log(this.response1);
-        // console.log(this.response2);
-        // console.log(this.clue1);
-        // console.log(this.clue2);
-
     }
 }
 
@@ -109,6 +103,7 @@ class Puzzle {
         return this.instructions;
     }
 
+    // checks to see if player input is equal to the correct answer
     isSolved(playerAnswer) {
         if (!this.solved) {
             if (playerAnswer.toLowerCase() == this.answer.toLowerCase()) {
@@ -180,7 +175,6 @@ class MathPuzzle extends Puzzle {
         } while (answer == undefined);
 
         // console.log(`maths answer ${answer}`);
-
         super(`Solve this problem:  ${question}`, answer.toString());
     }
 }
@@ -195,7 +189,6 @@ class CaesarCipherPuzzle extends Puzzle {
         const text = texts[randomIndex];
 
         const shift = Math.floor(Math.random() * 25) + 1;
-
         let encrypted = '';
 
         // apply cipher. 
@@ -221,7 +214,7 @@ class CaesarCipherPuzzle extends Puzzle {
         super(`Decrypt this Caesar Cipher text (random shift from 1-25 applied. Uppercase letters are unencrypted): ${encrypted}`, text);
 
         //debuging stuff - DONT FORGET TO REMOVE LATER 
-        console.log(`original text ${text}`);
+        // console.log(`original text ${text}`);
         // console.log(`encrypted text ${encrypted}`);
         // console.log(`cipher shift ${shift}`);
     }
@@ -266,7 +259,6 @@ class Game {
         this.collectedClues = [];
 
         // console.log(listOfChars)
-
         this.addCharToRoom(listOfChars)
 
         // randomly selects murderer and victim 
@@ -285,8 +277,8 @@ class Game {
         this.murderer = murderer;
         this.victim = victim;
 
-        console.log(`Victim is: ${victim.name}`);
-        console.log(`Murderer is: ${murderer.name}`);
+        // console.log(`Victim is: ${victim.name}`);
+        // console.log(`Murderer is: ${murderer.name}`);
 
         // calls the method to assign the responses
         jay.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
@@ -297,7 +289,6 @@ class Game {
         julian.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
         emma.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
         aria.assignResponses(victim.name.toLowerCase(), murderer.name.toLowerCase());
-
 
         // randomly select murder weapon
         const listOfWeapons = ['kitchen knife', 'candlestick', 'poisoned drink', 'poisoned food', 'crowbar', 'rope', 'letter opener', ' trophy', 'fire poker', 'pool cue',
@@ -313,7 +304,6 @@ class Game {
         // list of available clues 
         const clues = [murderer.clue1, murderer.clue2, weaponStr];
         this.clues = clues;
-        // console.log(clues);
 
         // creates player and starting room
         this.player = new Player();
@@ -330,14 +320,12 @@ class Game {
         // assigns puzzle to room
         for (let i = 0; i < puzzles.length && i < listOfRooms.length; i++) {
             this.rooms[listOfRooms[i]].puzzle = puzzles[i];
-
             //debugging
-            console.log(listOfRooms[i]);
+            // console.log(listOfRooms[i]);
         }
 
         this.setUp();
     }
-
 
     // function to add a character to a room randomly.
     addCharToRoom(listOfChars) {
@@ -348,7 +336,6 @@ class Game {
             room.addChar(listOfChars[i]);
         }
     }
-
 
     setUp() {
 
@@ -392,12 +379,13 @@ class Game {
 
     async handleInput(input, ws) {
 
+        // ending game flag 
         let gameEnded = false;
-        
         if(this.gameEnded){
             return;
         }
 
+        // sends the input back to the player
         ws.send(" ");
         ws.send(input);
         ws.send(" ");
@@ -408,6 +396,7 @@ class Game {
             const playerAnswer = input;
             if (this.player.currentRoom.puzzle.isSolved(playerAnswer)) {
                 ws.send(' ');
+                // sends a clue as a reward for completing a puzzle
                 if (this.clues.length > 0){
                     const clue = this.clues.pop();
                     ws.send(clue);
@@ -422,7 +411,6 @@ class Game {
 
             this.player.currentRoom.puzzle.isSolving = false;
             //ws.send(this.player.getRoomInfo());
-
         } else {
             const command = input.split(' ')[0];
             // execute command
