@@ -260,6 +260,8 @@ class Game {
         this.characterList = listOfChars;
         this.murderer = null;
         this.clues = null;
+        this.responses = [];
+        this.collectedClues = [];
 
         // console.log(listOfChars)
 
@@ -407,6 +409,7 @@ class Game {
                 if (this.clues.length > 0){
                     const clue = this.clues.pop();
                     ws.send(clue);
+                    this.collectedClues.push(clue);
                 }
                 ws.send(' ');
             } else {
@@ -484,8 +487,10 @@ class Game {
                                     ws.send(' ');
                                     if (character.questionedNumber == 0) {
                                         ws.send(character.response1)
+                                        this.responses.push(`${character.name}: "${character.response1}"`);
                                     } else {
                                         ws.send(character.response2);
+                                        this.responses.push(`${character.name}: "${character.response2}"`);
                                     }
                                     ws.send(' ');
                                     character.questionedNumber++;
@@ -523,6 +528,26 @@ class Game {
                         ws.send('You forgot to say who you are accusing.')
                     }
                     break;
+                    // gets all responses that you have collected so far 
+                case 'notepad':
+                    if (this.responses.length === 0 && this.collectedClues.length === 0){
+                        ws.send('You haven\'t collected any information yet.');
+                    } else {
+                        if (this.responses.length > 0){
+                            ws.send('Notes after questioning suspects: ');
+                            ws.send(' ');
+                            this.responses.forEach((note) => ws.send(note));
+                            ws.send(' ');
+                        }
+
+                        if (this.collectedClues.length > 0){
+                            ws.send('Clues discovered: ');
+                            ws.send(' ');
+                            this.collectedClues.forEach((note) => ws.send(note));
+                            ws.send(' ');
+                        }
+                    }
+                break;
                     // lists all commands
                 case 'help':
                     ws.send(' ');
@@ -532,8 +557,9 @@ class Game {
                     ws.send('"map" : displays map');
                     ws.send('"search" : searches the current room you are in')
                     ws.send('"solve" : solves the puzzle in the current room')
-                    ws.send('"question <character name> : questions character in room')
-                    ws.send('"accuse <characer name> : accuse suspect of crime')
+                    ws.send('"question <character name>" : questions character in room')
+                    ws.send('"accuse <characer name>" : accuse suspect of crime')
+                    ws.send('"notepad" : reads your notepad of things you noted down')
                     ws.send('"quit" : exits game');
                     ws.send(' ');
                     break;
