@@ -138,7 +138,7 @@ class AnagramPuzzle extends Puzzle {
 
         // debugging stuff 
         // console.log(`shuffled word ${shuffledWord}`);
-        console.log(`original word ${randomWord}`);
+        // console.log(`original word ${randomWord}`);
         // DONT FORGET TO REMOVE PLS.
 
         super(`Unscramble these letters to form a word: ${shuffledWord}`, randomWord);
@@ -148,12 +148,14 @@ class AnagramPuzzle extends Puzzle {
 // class for maths puzzle 
 class MathPuzzle extends Puzzle {
     constructor() {
+        // randomly picks numbers 
         let question, answer, op;
         const num1 = Math.floor(Math.random() * 50) + 1;
         const num2 = Math.floor(Math.random() * 20) + 1;
         const operations = ['+', '=', '*', '/'];
         op = operations[Math.floor(Math.random() * operations.length)];
 
+        // performs the logic 
         do {
             switch (op) {
                 case '+':
@@ -177,7 +179,7 @@ class MathPuzzle extends Puzzle {
             }
         } while (answer == undefined);
 
-        console.log(`maths answer ${answer}`);
+        // console.log(`maths answer ${answer}`);
 
         super(`Solve this problem:  ${question}`, answer.toString());
     }
@@ -186,8 +188,8 @@ class MathPuzzle extends Puzzle {
 // class for caesar cipher puzzle
 class CaesarCipherPuzzle extends Puzzle {
     constructor() {
-        const texts = ["detective", "secret", "clue", "evidence", "the garden outside is overgrown hiding secrets", "the dining room is set for a meal that never happened",
-            "the suspects are gathering in the living room", "a broken pool cue is resting on the table in the games room"];
+        const texts = ["detective", "secret", "clue", "evidence", "allibi", "suspects", "homicide", "clues", "witness", 
+            "investigation", "motive", "forensics", "inspector", "deduction", "autopsy", "blackmail", "cover up", "crime solving", "drama"];
 
         const randomIndex = Math.floor(Math.random() * texts.length);
         const text = texts[randomIndex];
