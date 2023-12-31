@@ -1,4 +1,4 @@
-# Novus Final Project
+# Who Did it Tho 2 - Text Based Murder Mystery Game
 
 ## Description
 
