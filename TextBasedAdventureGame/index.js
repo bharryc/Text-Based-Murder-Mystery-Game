@@ -182,7 +182,7 @@ class MathPuzzle extends Puzzle {
 // class for caesar cipher puzzle
 class CaesarCipherPuzzle extends Puzzle {
     constructor() {
-        const texts = ["detective", "secret", "clue", "evidence", "allibi", "suspects", "homicide", "clues", "witness", 
+        const texts = ["detective", "secret", "clue", "evidence", "allibi", "suspects", "homicide", "clues", "witness",
             "investigation", "motive", "forensics", "inspector", "deduction", "autopsy", "blackmail", "cover up", "crime solving", "drama"];
 
         const randomIndex = Math.floor(Math.random() * texts.length);
@@ -295,9 +295,9 @@ class Game {
             'broken bottle'];
         const murderWeapon = listOfWeapons[Math.floor(Math.random() * listOfWeapons.length)];
         let weaponStr = "";
-        if (murderWeapon == 'poisoned drink' || 'poisoned food'){
-           weaponStr = `Looking around the area you find a poison bottle that has been used to kill ${victim.name}`;
-        }else {
+        if (murderWeapon == 'poisoned drink' || 'poisoned food') {
+            weaponStr = `Looking around the area you find a poison bottle that has been used to kill ${victim.name}`;
+        } else {
             weaponStr = `Looking around the area you find a bloody ${murderWeapon} that was used to kill ${victim.name}`;
         }
 
@@ -341,7 +341,7 @@ class Game {
 
         const suspects = this.characterList.filter(character => !character.isVictim).map(character => character.name);
         const firstSuspects = suspects.slice(0, -1).join(', ');
-        const finalSuspect = suspects[suspects.length -1];
+        const finalSuspect = suspects[suspects.length - 1];
 
         // initialise websocket server
         app.ws('/index', (ws, req) => {
@@ -381,7 +381,7 @@ class Game {
 
         // ending game flag 
         let gameEnded = false;
-        if(this.gameEnded){
+        if (this.gameEnded) {
             return;
         }
 
@@ -397,7 +397,7 @@ class Game {
             if (this.player.currentRoom.puzzle.isSolved(playerAnswer)) {
                 ws.send(' ');
                 // sends a clue as a reward for completing a puzzle
-                if (this.clues.length > 0){
+                if (this.clues.length > 0) {
                     const clue = this.clues.pop();
                     ws.send(clue);
                     this.collectedClues.push(clue);
@@ -429,13 +429,13 @@ class Game {
                         ws.send(' ');
                     }
                     break;
-                    // description gets the description of the current room the player is in
+                // description gets the description of the current room the player is in
                 case 'description':
                     ws.send(' ');
                     ws.send(this.player.getRoomInfo());
                     ws.send(' ');
                     break;
-                    // searches the room to see if there is a puzzle
+                // searches the room to see if there is a puzzle
                 case 'search':
                     if (this.player.currentRoom.puzzle) {
                         ws.send(' ');
@@ -447,7 +447,7 @@ class Game {
                         ws.send(' ');
                     }
                     break;
-                    // solves the puzzle in current room
+                // solves the puzzle in current room
                 case 'solve':
                     if (this.player.currentRoom.puzzle) {
                         ws.send(' ');
@@ -461,8 +461,8 @@ class Game {
                         ws.send(' ');
                     }
                     break;
-                    // questions suspect, will check to see if char exists and is in current room
-                    // will return 2 responses
+                // questions suspect, will check to see if char exists and is in current room
+                // will return 2 responses
                 case 'question':
                     const characterName = input.split(' ')[1];
                     if (characterName) {
@@ -496,49 +496,49 @@ class Game {
                         ws.send('You forgot to say who you are questioning.')
                     }
                     break;
-                    // accuse suspect, checks to see if char is in game
-                    // if correct game ends, if incorrect game ends
+                // accuse suspect, checks to see if char is in game
+                // if correct game ends, if incorrect game ends
                 case 'accuse':
                     const char = input.split(' ')[1];
-                    if (char){
+                    if (char) {
                         ws.send(' ');
                         const character = this.characterList.find(c => c.name.toLowerCase() === char.toLowerCase());
-                        if (character){
-                            if (character.isMurderer){
+                        if (character) {
+                            if (character.isMurderer) {
                                 ws.send(this.murderer.gameEndWin);
                                 this.gameEnded = true;
-                            }else{
+                            } else {
                                 ws.send(this.murderer.gameEndLoss);
                                 this.gameEnded = true;
                             }
-                        }else {
+                        } else {
                             ws.send('No character with that name is at the party.')
                         }
-                    }else {
+                    } else {
                         ws.send('You forgot to say who you are accusing.')
                     }
                     break;
-                    // gets all responses that you have collected so far 
+                // gets all responses that you have collected so far 
                 case 'notepad':
-                    if (this.responses.length === 0 && this.collectedClues.length === 0){
+                    if (this.responses.length === 0 && this.collectedClues.length === 0) {
                         ws.send('You haven\'t collected any information yet.');
                     } else {
-                        if (this.responses.length > 0){
+                        if (this.responses.length > 0) {
                             ws.send('Notes after questioning suspects: ');
                             ws.send(' ');
                             this.responses.forEach((note) => ws.send(note));
                             ws.send(' ');
                         }
 
-                        if (this.collectedClues.length > 0){
+                        if (this.collectedClues.length > 0) {
                             ws.send('Clues discovered: ');
                             ws.send(' ');
                             this.collectedClues.forEach((note) => ws.send(note));
                             ws.send(' ');
                         }
                     }
-                break;
-                    // lists all commands
+                    break;
+                // lists all commands
                 case 'help':
                     ws.send(' ');
                     ws.send('List of available commands: ');
@@ -553,7 +553,7 @@ class Game {
                     ws.send('"quit" : exits game');
                     ws.send(' ');
                     break;
-                    // displays basic map 
+                // displays basic map 
                 case 'map':
                     ws.send(' ');
                     ws.send('*-------------*-------------*-------------*');
@@ -572,18 +572,33 @@ class Game {
                     ws.send(` You are in the ${this.player.currentRoom.name}`);
                     ws.send(' ');
                     break;
-                    // quits game
+                // quits game
                 case 'quit':
-                    ws.send(' ');
-                    ws.send('Goodbye');
-                    ws.send(' ');
+                    // ws.send(' ');
+                    // ws.send('Goodbye');
+                    // ws.send(' ');
+                    sendText(ws, 'Goodbye');
                     this.gameEnded = true;
                 default:
-                    ws.send(' ');
-                    ws.send('Invalid command');
-                    ws.send(' ');
+                    // ws.send(' ');
+                    // ws.send('Invalid command');
+                    // ws.send(' ');
+                    sendText(ws, 'Invalid command');
+
+
+
             }
         }
+
+        function sendText(ws, text){
+            ws.send(' ');
+            ws.send(text);
+            ws.send(' ');
+        }
+
+
+
+
     }
 }
 
